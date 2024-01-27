@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">FitnessStudio</string>
     <string name="SplashScreeImage_description">image of our fit icon</string>
+    <string-array name="country_code">
+        <item>+91</item>
+        <item>+52</item>
+    </string-array>
+    <string name="continueButton">Continue</string>
+    <string name="loginScreen1MSG1">A 4 digit OTP will be sent via SMS
+to verify your phone number.</string>
+    <string name="loginScreen1MSG2">Enter Number</string>
+    <string name="countryCodeText">+91</string>
+    <string name="loginScreen1Heading1">PHONE NUMBER</string>
+    <string name="loginScreen1MSG3">Enter number to continue</string>
+    <string name="loginScreen1Heading2">WELCOME</string>
 </resources>

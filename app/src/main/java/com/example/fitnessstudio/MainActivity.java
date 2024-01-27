@@ -14,13 +14,13 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-//		new Handler().postDelayed(new Runnable() {
-//			@Override
-//			public void run() {
-////					connection screen ka beech ka kam --------------------
-////				Intent intent = new Intent(MainActivity.this,__targetFileName__);
-////				startActivity(intent);
-//			}
-//		},3000);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+//					connection screen ka beech ka kam --------------------
+				Intent intent = new Intent(MainActivity.this,LoginScreen1.class);
+				startActivity(intent);
+			}
+		},3000);
 	}
 }
