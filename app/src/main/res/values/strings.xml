@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FitnessStudio</string>
+    <string name="SplashScreeImage_description">image of our fit icon</string>
 </resources>
