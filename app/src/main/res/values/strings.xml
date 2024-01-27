@@ -6,11 +6,17 @@
         <item>+52</item>
     </string-array>
     <string name="continueButton">Continue</string>
-    <string name="loginScreen1MSG1">A 4 digit OTP will be sent via SMS
-to verify your phone number.</string>
+    <string name="loginScreen1MSG1">A 4 digit OTP will be sent via SMS \n to verify your phone number.</string>
     <string name="loginScreen1MSG2">Enter Number</string>
     <string name="countryCodeText">+91</string>
     <string name="loginScreen1Heading1">PHONE NUMBER</string>
     <string name="loginScreen1MSG3">Enter number to continue</string>
     <string name="loginScreen1Heading2">WELCOME</string>
+    <string name="skip">Skip</string>
+    <string name="getting_started">Getting Started</string>
+    <string name="towards_a_healthy_lifestyle">Towards a Healthy Lifestyle</string>
+    <string name="keep_the">Keep The\t</string>
+    <string name="heart_healthy">Heart Healthy</string>
+    <string name="no_beauty_shines_better">No beauty shines better</string>
+    <string name="than_the_healthy_heart">than the healthy heart.</string>
 </resources>
