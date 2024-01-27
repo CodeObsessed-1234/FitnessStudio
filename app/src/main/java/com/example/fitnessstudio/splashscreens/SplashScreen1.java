@@ -2,6 +2,7 @@ package com.example.fitnessstudio.splashscreens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.fitnessstudio.R;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashScreen1 extends AppCompatActivity {
 
     @Override
