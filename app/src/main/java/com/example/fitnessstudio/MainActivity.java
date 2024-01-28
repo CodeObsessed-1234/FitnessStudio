@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.fitnessstudio.splashscreens.SplashScreen1;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void run() {
 //					connection screen ka beech ka kam --------------------
-				Intent intent = new Intent(MainActivity.this,LoginScreen1.class);
+				Intent intent = new Intent(MainActivity.this, SplashScreen1.class);
 				startActivity(intent);
 			}
 		},3000);

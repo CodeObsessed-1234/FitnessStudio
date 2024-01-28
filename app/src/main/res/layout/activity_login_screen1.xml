@@ -73,7 +73,6 @@
             android:textColorHint="@color/green"
             android:textColor="@color/white"
             android:maxLength="10"
-            android:alpha="0.5f"
             android:inputType="phone"
             android:paddingLeft="20dp"
             android:textSize="20sp"/>
