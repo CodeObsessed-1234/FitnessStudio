@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 //					connection screen ka beech ka kam --------------------
 				Intent intent = new Intent(MainActivity.this, SplashScreen1.class);
 				startActivity(intent);
+				finish();
 			}
 		},3000);
 	}
