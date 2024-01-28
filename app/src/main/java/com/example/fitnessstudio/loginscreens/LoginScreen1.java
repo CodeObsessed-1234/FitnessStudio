@@ -1,4 +1,4 @@
-package com.example.fitnessstudio;
+package com.example.fitnessstudio.loginscreens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.fitnessstudio.R;
 
 public class LoginScreen1 extends AppCompatActivity {
 

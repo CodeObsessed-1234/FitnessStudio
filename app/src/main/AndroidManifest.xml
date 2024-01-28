@@ -13,25 +13,26 @@
         android:theme="@style/Theme.FitnessStudio"
         tools:targetApi="31">
         <activity
+            android:name=".splashscreens.SplashScreen2"
+            android:exported="false"/>
+        <activity
             android:name=".splashscreens.SplashScreen1"
             android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".LoginScreen2"
-            android:exported="false" />
-        <activity
-            android:name=".LoginScreen1"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+           <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".loginscreens.LoginScreen2"
+            android:exported="false" />
+        <activity
+            android:name=".loginscreens.LoginScreen1"
+            android:exported="false" />
+        <activity
+            android:name=".mainscreen.MainActivity"
+            android:exported="false"/>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

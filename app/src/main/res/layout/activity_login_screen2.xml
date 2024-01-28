@@ -6,6 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/lightBlack"
-    tools:context=".LoginScreen2">
+    tools:context=".loginscreens.LoginScreen2">
 
 </LinearLayout>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/lightBlack"
-    tools:context=".MainActivity">
+    tools:context=".mainscreen.MainActivity">
     <ImageView
         android:id="@+id/splashScreenImage1"
         android:layout_width="match_parent"

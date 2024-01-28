@@ -19,4 +19,8 @@
     <string name="heart_healthy">Heart Healthy</string>
     <string name="no_beauty_shines_better">No beauty shines better</string>
     <string name="than_the_healthy_heart">than the healthy heart.</string>
+    <string name="track_your">Track Your\t</string>
+    <string name="health">Health</string>
+    <string name="keep_track_on_your_health">Keep track on your health</string>
+    <string name="to_keep_yourself_healthy">to keep yourself healthy.</string>
 </resources>
