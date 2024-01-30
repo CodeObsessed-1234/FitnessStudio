@@ -4,51 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".splashscreens.SplashScreen2"
+    tools:context=".splashscreen.SplashScreen2"
     android:background="@color/lightBlack"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:baselineAligned="false">
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/arrow_back_splash_screen2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/SplashScreeImage_description"
-                android:onClick="arrowButtonClickedSplashScreen2"
-                android:paddingStart="27dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="5dp"
-                android:src="@drawable/arrow_back"
-                tools:ignore="RtlSymmetry,DuplicateSpeakableTextCheck" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/skip_text_view_splash_screen2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/skip"
-                android:fontFamily="@font/inter_medium"
-                android:textSize="20sp"
-                android:layout_gravity="end"
-                android:paddingTop="20dp"
-                android:paddingEnd="27dp"
-                android:textColor="@color/grey1"
-                tools:ignore="RtlSymmetry" />
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical">
+        <TextView
+            android:id="@+id/skip_text_view_splash_screen2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/skip"
+            android:fontFamily="@font/inter_medium"
+            android:textSize="20sp"
+            android:layout_gravity="end"
+            android:paddingTop="20dp"
+            android:paddingEnd="27dp"
+            android:textColor="@color/grey1"
+            tools:ignore="RtlSymmetry" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

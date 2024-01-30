@@ -4,6 +4,8 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="buttonStyle">@drawable/button_style</item>
+        <item name="android:statusBarColor">@color/lightBlack</item>
+        <item name="android:navigationBarColor">@color/lightBlack</item>
     </style>
 
     <style name="Theme.FitnessStudio" parent="Base.Theme.FitnessStudio" />

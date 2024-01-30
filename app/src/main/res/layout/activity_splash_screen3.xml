@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".splashscreen.SplashScreen1"
+    tools:context=".splashscreen.SplashScreen3"
     android:background="@color/lightBlack"
     android:orientation="vertical">
     <LinearLayout
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/skip_text_view_splash_screen1"
+            android:id="@+id/skip_text_view_splash_screen3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/skip"
@@ -51,7 +51,7 @@
             android:layout_gravity="center"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/animation_splash_screen1"
+            android:src="@drawable/animation_splash_screen3"
             />
     </LinearLayout>
     <LinearLayout
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
                 android:textSize="25sp"
-                android:text="@string/keep_the"
+                android:text="@string/stay"
                 android:textColor="@color/blue"
                 />
             <TextView
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_semibold"
                 android:textSize="25sp"
-                android:text="@string/heart_healthy"
+                android:text="@string/organized"
                 android:textColor="@color/grey2"
                 />
         </LinearLayout>
@@ -89,7 +89,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/no_beauty_shines_better"
+                android:text="@string/organize_everything"
+                android:layout_gravity="center"
                 android:fontFamily="@font/itim"
                 android:textSize="25sp"
                 android:textColor="@color/blue"
@@ -97,7 +98,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/than_the_healthy_heart"
+                android:text="@string/in_life"
+                android:layout_gravity="center"
                 android:textColor="@color/grey2"
                 android:fontFamily="@font/itim"
                 android:textSize="25sp" />
@@ -112,7 +114,7 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/splash_screen1_last_image"
+            android:src="@drawable/splash_screen3_last_image"
             android:contentDescription="@string/SplashScreeImage_description"
             />
     </LinearLayout>

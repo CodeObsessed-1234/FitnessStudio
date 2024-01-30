@@ -1,4 +1,4 @@
-package com.example.fitnessstudio.loginscreens;
+package com.example.fitnessstudio.loginscreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
