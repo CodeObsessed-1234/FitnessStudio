@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FitnessStudio</string>
+    <string name="app_name">Fitness Studio</string>
     <string name="SplashScreeImage_description">image of our fit icon</string>
     <string-array name="country_code">
         <item>+91</item>
@@ -27,6 +27,9 @@
     <string name="organized">Organized</string>
     <string name="organize_everything">Organize everything</string>
     <string name="in_life">in life.</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="find_everything_you_need">\u0020 Find everything you need</string>
+    <string name="to_crush_your_fitness_goals">to crush your fitness goals!</string>
+    <string name="get_started">Get Started</string>
 </resources>

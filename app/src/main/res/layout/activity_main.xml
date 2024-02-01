@@ -4,15 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/lightBlack"
-    tools:context=".mainscreen.MainActivity">
-    <ImageView
-        android:id="@+id/splashScreenImage1"
+    tools:context=".main_screen.MainActivity">
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/fitness_studio_icon"
-        android:layout_gravity="center"
-        android:scaleType="center"
-        android:contentDescription="@string/SplashScreeImage_description" />
+        android:id="@+id/frame_layout_main_activity"
+        />
 </LinearLayout>
