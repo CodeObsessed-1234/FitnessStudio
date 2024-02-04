@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login_screen.LoginScreen1"
+    android:orientation="vertical"
+    android:background="@color/lightBlack">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/fitness_studio_icon"
+            android:contentDescription="@string/SplashScreeImage_description"
+            android:layout_marginTop="40dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome"
+            android:textAlignment="center"
+            android:paddingTop="10dp"
+            android:textSize="30sp"
+            android:textColor="@color/blue"
+            android:fontFamily="@font/inter_semibold"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter"
+            android:paddingTop="2dp"
+            android:text="@string/enter_number_to_continue"
+            android:textAlignment="center"
+            android:textColor="@color/green"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="UselessLeaf">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingTop="30dp"
+            android:text="@string/phone_number"
+            android:textSize="20sp"
+            android:textColor="@color/blue"
+            android:fontFamily="@font/inter_semibold"
+            tools:ignore="RtlSymmetry" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/country_code_picker"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ccp_contentColor="@color/blue"
+            android:inputType="phone"
+            app:ccpDialog_textColor="@color/green"
+            app:ccpDialog_background="@color/lightBlack"
+            tools:ignore="RtlSymmetry" />
+        <EditText
+            android:id="@+id/phone_number_edit_text_login_screen1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autofillHints="phone"
+            android:hint="@string/enter_number"
+            android:inputType="phone"
+            android:textSize="20sp"
+            android:maxLength="10"
+            android:textColor="@color/green"
+            android:backgroundTint="@color/blue"
+            android:textColorHint="@color/green"
+            tools:ignore="RtlSymmetry,TouchTargetSizeCheck,TextContrastCheck" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter"
+            android:padding="20dp"
+            android:text="@string/a_6_digit_otp_will_be_sent_via_sms_n_to_verify_your_phone_number"
+            android:textColor="@color/green"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="20dp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/continue_button_login_screen1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/_continue"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/textColor"
+            android:textSize="25sp"
+            tools:ignore="VisualLintButtonSize,TextContrastCheck" />
+    </LinearLayout>
+</LinearLayout>

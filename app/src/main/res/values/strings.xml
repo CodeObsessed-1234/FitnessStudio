@@ -1,18 +1,7 @@
 <resources>
     <string name="app_name">Fitness Studio</string>
     <string name="SplashScreeImage_description">image of our fit icon</string>
-    <string-array name="country_code">
-        <item>+91</item>
-        <item>+52</item>
-    </string-array>
-    <string name="continueButton">Continue</string>
-    <string name="loginScreen1MSG1">A 4 digit OTP will be sent via SMS \n to verify your phone number.</string>
-    <string name="loginScreen1MSG2">Enter Number</string>
-    <string name="countryCodeText">+91</string>
-    <string name="loginScreen1Heading1">PHONE NUMBER</string>
-    <string name="loginScreen1MSG3">Enter number to continue</string>
-    <string name="loginScreen1Heading2">WELCOME</string>
-    <string name="skip">Skip</string>
+    <string name="_continue">Continue</string>
     <string name="getting_started">Getting Started</string>
     <string name="towards_a_healthy_lifestyle">Towards a Healthy Lifestyle</string>
     <string name="keep_the">Keep The\u0020</string>
@@ -27,9 +16,18 @@
     <string name="organized">Organized</string>
     <string name="organize_everything">Organize everything</string>
     <string name="in_life">in life.</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="welcome_to">Welcome to</string>
+    <string name="welcome_to">Welcome To</string>
     <string name="find_everything_you_need">\u0020 Find everything you need</string>
     <string name="to_crush_your_fitness_goals">to crush your fitness goals!</string>
     <string name="get_started">Get Started</string>
+    <string name="welcome">WELCOME</string>
+    <string name="enter_number_to_continue">Enter number to continue</string>
+    <string name="phone_number">PHONE NUMBER</string>
+    <string name="otp">OTP</string>
+    <string name="a_6_digit_code_has_been_sent">A 6 digit code has been sent\nto +</string>
+    <string name="didn_t_receive_the_code">Didn\'t receive the code?</string>
+    <string name="resend">RESEND</string>
+    <string name="verify">Verify</string>
+    <string name="enter_number">Enter Number</string>
+    <string name="a_6_digit_otp_will_be_sent_via_sms_n_to_verify_your_phone_number">A 6 digit OTP will be sent via SMS\n to verify your phone number.</string>
 </resources>

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -16,15 +17,23 @@
         android:theme="@style/Theme.FitnessStudio"
         tools:targetApi="31">
         <activity
-            android:name=".main_screen.MainActivity"
+            android:name=".login_screen.LoginScreen2"
+            android:exported="false"/>
+        <activity
+            android:name=".login_screen.LoginScreen1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".main_screen.MainActivity"
+            android:exported="false"/>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>
