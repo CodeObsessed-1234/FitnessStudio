@@ -64,7 +64,7 @@
         android:layout_height="wrap_content">
         <com.hbb20.CountryCodePicker
             android:id="@+id/country_code_picker"
-            android:padding="10dp"
+           android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:ccp_contentColor="@color/blue"
@@ -75,7 +75,7 @@
         <EditText
             android:id="@+id/phone_number_edit_text_login_screen1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
             android:autofillHints="phone"
             android:hint="@string/enter_number"
             android:inputType="phone"

@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,35 +30,8 @@ public class LoginScreen2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen2);
-        Intent intent=getIntent();
-        String phoneNumberText=intent.getStringExtra("mobileNumber");
-        assert phoneNumberText != null;
-        String phoneNumber="+"+phoneNumberText.substring(0,phoneNumberText.indexOf(' '))+phoneNumberText.substring(phoneNumberText.indexOf(' ')+1);
-        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
-        PhoneAuthOptions options= PhoneAuthOptions.newBuilder(firebaseAuth)
-                .setPhoneNumber(phoneNumber)
-                .setTimeout(60L,TimeUnit.SECONDS)
-                .setActivity(this)
-                .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                    @Override
-                    public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                        super.onCodeSent(s, forceResendingToken);
-                        Log.d("Code sent",s);
-                    }
-
-                    @Override
-                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                        Log.d("Verification","completed");
-                    }
-
-                    @Override
-                    public void onVerificationFailed(@NonNull FirebaseException e) {
-                        Log.d("fail",e.getMessage());
-                    }
-                })
-                .build();
-        PhoneAuthProvider.verifyPhoneNumber(options);
         TextView numberTextView=this.findViewById(R.id.number_text_view_login_screen2);
+        TextView resendTextView=this.findViewById(R.id.resend_text_view_login_screen2);
         EditText[] editTexts=new EditText[6];
         editTexts[0]=this.findViewById(R.id.edit_text_otp_1);
         editTexts[1]=this.findViewById(R.id.edit_text_otp_2);
@@ -86,11 +58,51 @@ public class LoginScreen2 extends AppCompatActivity {
 
                 }
             });
+        Intent intent=getIntent();
+        String phoneNumberText=intent.getStringExtra("mobileNumber");
+        assert phoneNumberText != null;
+        String phoneNumber="+"+phoneNumberText.substring(0,phoneNumberText.indexOf(' '))+phoneNumberText.substring(phoneNumberText.indexOf(' ')+1);
         ImageView imageView=this.findViewById(R.id.arrow_back_image);
         imageView.setOnClickListener(event->backToLoginScreen(imageView));
         AppCompatButton verifyButton=this.findViewById(R.id.verify_button_login_screen2);
         numberTextView.setText(numberTextView.getText()+phoneNumberText);
-        verifyButton.setOnClickListener(event-> Toast.makeText(this, "Verify coming soon", Toast.LENGTH_SHORT).show());
+        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+        final String[] code = {""};
+        PhoneAuthOptions options= PhoneAuthOptions.newBuilder(firebaseAuth)
+                .setPhoneNumber(phoneNumber)
+                .setTimeout(60L,TimeUnit.SECONDS)
+                .setActivity(this)
+                .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    @Override
+                    public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                        super.onCodeSent(s, forceResendingToken);
+                        Toast.makeText(LoginScreen2.this,"Code sent.",Toast.LENGTH_SHORT).show();
+                        code[0]=s;
+                    }
+
+                    @Override
+                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+
+                    }
+                    @Override
+                    public void onVerificationFailed(@NonNull FirebaseException e) {
+                        Toast.makeText(LoginScreen2.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+        verifyButton.setOnClickListener(event->{
+            StringBuilder enteredCode= new StringBuilder();
+            for(EditText editText:editTexts)
+                enteredCode.append(editText.getText().toString());
+            PhoneAuthCredential credential=PhoneAuthProvider.getCredential(code[0],enteredCode.toString());
+            firebaseAuth.signInWithCredential(credential).addOnCompleteListener(task -> {
+                if(task.isSuccessful())
+                    Toast.makeText(LoginScreen2.this, "Verification completed", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(LoginScreen2.this, "Verification failed", Toast.LENGTH_SHORT).show();
+            });
+        });
     }
     public void backToLoginScreen(View view){
         Intent intent=new Intent(this, LoginScreen1.class);
@@ -98,4 +110,5 @@ public class LoginScreen2 extends AppCompatActivity {
         finish();
         overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
     }
+
 }
