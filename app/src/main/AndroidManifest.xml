@@ -21,15 +21,15 @@
             android:exported="false"/>
         <activity
             android:name=".login_screen.LoginScreen1"
+            android:exported="false"/>
+        <activity
+            android:name=".main_screen.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".main_screen.MainActivity"
-            android:exported="false"/>
 
         <meta-data
             android:name="preloaded_fonts"
