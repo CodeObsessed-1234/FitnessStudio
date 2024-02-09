@@ -30,4 +30,6 @@
     <string name="verify">Verify</string>
     <string name="enter_number">Enter Number</string>
     <string name="a_6_digit_otp_will_be_sent_via_sms_n_to_verify_your_phone_number">A 6 digit OTP will be sent via SMS\n to verify your phone number.</string>
+    <string name="profile_photo">PROFILE PHOTO</string>
+    <string name="enter_name">Enter name</string>
 </resources>

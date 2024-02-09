@@ -72,10 +72,15 @@
             app:ccpDialog_textColor="@color/green"
             app:ccpDialog_background="@color/lightBlack"
             tools:ignore="RtlSymmetry" />
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            app:dividerColor="@color/blue"
+            />
         <EditText
             android:id="@+id/phone_number_edit_text_login_screen1"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:autofillHints="phone"
             android:hint="@string/enter_number"
             android:inputType="phone"
@@ -103,6 +108,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:paddingTop="40dp"
         android:layout_margin="20dp">
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/continue_button_login_screen1"

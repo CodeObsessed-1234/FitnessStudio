@@ -18,7 +18,8 @@ public class SplashScreen3 extends Fragment {
                              Bundle savedInstanceState) {
         new Handler().postDelayed(()->
                         getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_main_activity,new SplashScreen4()).commit()
-                ,3000L);
+                ,900L);
+        requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         return inflater.inflate(R.layout.fragment_splash_screen3, container, false);
     }
 }

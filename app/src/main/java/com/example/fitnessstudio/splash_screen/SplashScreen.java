@@ -16,6 +16,7 @@ public class SplashScreen extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         return inflater.inflate(R.layout.fragment_splash_screen, container, false);
     }
 }
