@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.user_interface.UserInterface;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
@@ -42,6 +43,11 @@ public class LoginScreen3 extends AppCompatActivity {
         HashMap<String,String> detailsMap=new HashMap<>();
         detailsMap.put("User Name",name);
         detailsMap.put("Phone Number",phoneNumber);
-        FirebaseDatabase.getInstance().getReference().child("User").setValue(detailsMap);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference usersReference = database.getReference("Users");
+        String key=usersReference.push().getKey();
+        detailsMap.put("Key",key);
+        assert key != null;
+        usersReference.child(key).setValue(detailsMap);
     }
 }
