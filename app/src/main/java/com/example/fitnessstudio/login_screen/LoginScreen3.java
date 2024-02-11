@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.fitnessstudio.R;
+import com.example.fitnessstudio.user_interface.UserInterface;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
@@ -28,8 +29,13 @@ public class LoginScreen3 extends AppCompatActivity {
             String enteredName=name.getText().toString();
             if(TextUtils.isEmpty(enteredName))
                 Toast.makeText(this, "Enter a valid name.", Toast.LENGTH_SHORT).show();
-            else
-                addDataInDatabase(enteredName,phoneNumber);
+            else {
+                addDataInDatabase(enteredName, phoneNumber);
+                Intent intentNext=new Intent(this, UserInterface.class);
+                startActivity(intentNext);
+                finish();
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+            }
         });
     }
     private void addDataInDatabase(String name,String phoneNumber){

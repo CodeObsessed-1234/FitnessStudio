@@ -32,4 +32,15 @@
     <string name="a_6_digit_otp_will_be_sent_via_sms_n_to_verify_your_phone_number">A 6 digit OTP will be sent via SMS\n to verify your phone number.</string>
     <string name="profile_photo">PROFILE PHOTO</string>
     <string name="enter_name">Enter name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="track_vitals">TRACK VITALS</string>
+    <string name="blood_pressure">Blood pressure</string>
+    <string name="heart_rate">Heart rate</string>
+    <string name="pedometer">Pedometer</string>
+    <string name="utility">UTILITY</string>
+    <string name="alarm">Alarm</string>
+    <string name="event">Event</string>
+    <string name="report">Report</string>
+    <string name="quote">Nothing will work unless\nyou do</string>
 </resources>
