@@ -2,6 +2,8 @@
     <style name="Base.Theme.FitnessStudio" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/lightBlack</item>
         <item name="android:navigationBarColor">@color/lightBlack</item>
+        <item name="android:windowBackground">@color/lightBlack</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
     <style name="Theme.FitnessStudio" parent="Base.Theme.FitnessStudio" />
 </resources>

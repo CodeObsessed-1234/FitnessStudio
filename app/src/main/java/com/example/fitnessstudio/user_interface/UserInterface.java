@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Fragment;
 import android.os.Bundle;
 
 import com.example.fitnessstudio.R;
@@ -14,9 +15,12 @@ public class UserInterface extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_interface);
+        setFragment(new MainUserInterface());
+    }
+    private void setFragment(MainUserInterface fragment){
         FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.frame_layout_user_interface,new MainUserInterface());
+        fragmentTransaction.add(R.id.frame_layout_user_interface,fragment);
         fragmentTransaction.commit();
     }
 }
