@@ -51,4 +51,20 @@
     <string name="_0_bpm">0 BPM</string>
     <string name="undetermined">Undetermined</string>
     <string name="add_to_report">Add to report</string>
+    <string name="output_detected_peaks_header">Detected Peaks:</string>
+    <string name="separator">,</string>
+    <string name="row_separator">\n</string>
+    <string name="raw_values">Measurements (Timestamp, Value)</string>
+    <string name="cameraPermissionRequired">Camera permission is required for this application to work.</string>
+    <string name="noFlashWarning">Measurement without flash is less reliable.</string>
+    <string name="dateFormat">yyyy-MM-dd\'T\'HH:mm:ss</string>
+    <string name="dateFormatGranular">yyyy-MM-dd\'T\'HH:mm:ss</string>
+    <string name="camera_not_found">Camera not available.</string>
+    <string name="calculated_graph">Calculated graph</string>
+    <string name="heart_rate_calculation_start">Heart rate calculation started. Please wait.</string>
+    <plurals name="measurement_output_template">
+        <item quantity="zero">Heart rate calculated: %2.1f BPM</item>
+        <item quantity="one">Heart rate calculated: %2.1f BPM</item>
+        <item quantity="other">Heart rate calculated: %2.1f BPM</item>
+    </plurals>
 </resources>

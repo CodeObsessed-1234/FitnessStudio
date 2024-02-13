@@ -54,44 +54,7 @@
         android:layout_height="match_parent"
         android:layout_margin="20dp"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/result"
-            android:textAllCaps="true"
-            android:textColor="@color/blue"
-            android:textSize="25sp"
-            android:fontFamily="@font/inter_semibold"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/_0_bpm"
-            android:textColor="@color/green"
-            android:textSize="25sp"
-            android:fontFamily="@font/inter_semibold"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/undetermined"
-            android:textColor="@color/green"
-            android:textSize="25sp"
-            android:fontFamily="@font/inter_semibold"
-            />
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/add_to_report_heart_rate"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/add_to_report"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:fontFamily="@font/inter_semibold"
-            android:textSize="25sp"
-            android:textColor="@color/white"
-            />
-        <TextView
+       <TextView
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,8 +73,7 @@
             android:text="@string/the_result_provided_is_based_on_mathematical_calculation"
             />
         <TextView
-            android:layout_marginTop="20dp"
-            android:id="@+id/quote_text_view_heart_rate"
+            android:layout_marginTop="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/quote"
