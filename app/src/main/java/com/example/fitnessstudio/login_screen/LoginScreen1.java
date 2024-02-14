@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.fitnessstudio.R;
+import com.example.fitnessstudio.session.SessionManager;
+import com.example.fitnessstudio.user_interface.UserInterface;
 import com.hbb20.CountryCodePicker;
 
 // after 2053 SHA1 and SHA256 needs to be updated.
@@ -18,6 +20,12 @@ public class LoginScreen1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SessionManager sessionManager = new SessionManager(this);
+        if(sessionManager.isLoggedIn()){
+            Intent intent = new Intent(this, UserInterface.class);
+            startActivity(intent);
+            finish();
+        }
         setContentView(R.layout.activity_login_screen1);
         EditText phoneNumber=this.findViewById(R.id.phone_number_edit_text_login_screen1);
         CountryCodePicker countryCodePicker=this.findViewById(R.id.country_code_picker);
@@ -36,4 +44,5 @@ public class LoginScreen1 extends AppCompatActivity {
             }
         });
     }
+
 }

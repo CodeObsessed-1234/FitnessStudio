@@ -26,7 +26,7 @@
             android:exported="false" />
         <activity
             android:name=".user_interface.UserInterface"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".login_screen.LoginScreen3"
             android:exported="false" />
@@ -40,8 +40,9 @@
             android:name=".main_screen.MainActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
