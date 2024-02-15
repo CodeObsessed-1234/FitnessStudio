@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.fitnessstudio.R;
+import com.example.fitnessstudio.session.SessionManager;
 import com.example.fitnessstudio.user_interface.UserInterface;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -17,8 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class LoginScreen3 extends AppCompatActivity {
-
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen3);
@@ -27,6 +27,7 @@ public class LoginScreen3 extends AppCompatActivity {
         EditText name=this.findViewById(R.id.edit_text_name_login_screen3);
         AppCompatButton continueButton=this.findViewById(R.id.continue_button_login_screen3);
         continueButton.setOnClickListener(event->{
+            SessionManager.addLoginSession(true);
             String enteredName=name.getText().toString();
             if(TextUtils.isEmpty(enteredName))
                 Toast.makeText(this, "Enter a valid name.", Toast.LENGTH_SHORT).show();

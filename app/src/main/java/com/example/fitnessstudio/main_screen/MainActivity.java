@@ -3,6 +3,8 @@ package com.example.fitnessstudio.main_screen;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -24,4 +26,5 @@ public class MainActivity extends AppCompatActivity {
 			getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout_main_activity,new SplashScreen1()).commit()
 		,3000L);
 	}
+
 }
