@@ -29,7 +29,7 @@ public class CameraService {
 
     private CaptureRequest.Builder previewCaptureRequestBuilder;
 
-    CameraService(Activity _activity, Handler _handler) {
+    public CameraService(Activity _activity, Handler _handler) {
         activity = _activity;
         handler = _handler;
     }

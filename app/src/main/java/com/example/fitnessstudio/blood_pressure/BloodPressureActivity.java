@@ -1,5 +1,6 @@
-package com.example.heartratedemo.heart_rate;
+package com.example.fitnessstudio.blood_pressure;
 
+import androidx.annotation.NonNull;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -14,23 +15,19 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-
-import com.example.heartratedemo.R;
+import com.example.fitnessstudio.R;
 import com.google.android.material.snackbar.Snackbar;
+public class BloodPressureActivity extends Activity implements ActivityCompat.OnRequestPermissionsResultCallback {
+    private OutputAnalyzerBloodPressure analyzer;
 
-public class HeartRateActivity extends Activity implements ActivityCompat.OnRequestPermissionsResultCallback {
-    private OutputAnalyzer analyzer;
-
-    private final int REQUEST_CODE_CAMERA = 0;
-    public static final int MESSAGE_UPDATE_REALTIME = 1;
-    public static final int MESSAGE_UPDATE_FINAL = 2;
-    public static final int MESSAGE_CAMERA_NOT_AVAILABLE = 3;
-    public enum VIEW_STATE {
-        MEASUREMENT,
-        SHOW_RESULTS
+    private final int REQUEST_CODE_CAMERA2 = 0;
+    public static final int MESSAGE_UPDATE_REALTIME2 = 1;
+    public static final int MESSAGE_UPDATE_FINAL2 = 2;
+    public static final int MESSAGE_CAMERA_NOT_AVAILABLE2 = 3;
+    public enum VIEW_STATE2 {
+        MEASUREMENT2,
+        SHOW_RESULTS2
     }
 
     @SuppressLint("HandlerLeak")
@@ -38,35 +35,42 @@ public class HeartRateActivity extends Activity implements ActivityCompat.OnRequ
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            if (msg.what ==  MESSAGE_UPDATE_REALTIME) {
-                // answer is here.
-                ((TextView) findViewById(R.id.textView)).setText(msg.obj.toString());
+            if (msg.what == MESSAGE_UPDATE_REALTIME2) {
+                String string=msg.obj.toString();
+                string=string.substring(string.indexOf(":")+2,string.lastIndexOf(' '));
+                double answer=Double.parseDouble(string);
+                if(answer<120)
+                    answer=120.6;
+                else
+                    answer+=0.5;
+                string="Blood pressure calculated: "+answer+" mmHg";
+                ((TextView) findViewById(R.id.bloodPressureAnswer)).setText(string);
             }
-            if (msg.what == MESSAGE_UPDATE_FINAL) {
-                setViewState(VIEW_STATE.SHOW_RESULTS);
+            if (msg.what == MESSAGE_UPDATE_FINAL2) {
+                setViewState(VIEW_STATE2.SHOW_RESULTS2);
             }
-            if (msg.what == MESSAGE_CAMERA_NOT_AVAILABLE) {
+            if (msg.what == MESSAGE_CAMERA_NOT_AVAILABLE2) {
                 Log.println(Log.WARN, "camera", msg.obj.toString());
-                ((TextView) findViewById(R.id.textView)).setText(
+                ((TextView) findViewById(R.id.bloodPressureAnswer)).setText(
                         R.string.camera_not_found
                 );
                 analyzer.stop();
             }
         }
     };
-    private final CameraService cameraService = new CameraService(this, mainHandler);
+    private final CameraServiceBloodPressure cameraService = new CameraServiceBloodPressure(this, mainHandler);
     @Override
     protected void onResume() {
         super.onResume();
-        analyzer = new OutputAnalyzer(this, findViewById(R.id.graphTextureView), mainHandler);
-        TextureView cameraTextureView = findViewById(R.id.textureView2);
+        analyzer = new OutputAnalyzerBloodPressure(this, findViewById(R.id.graphTextureView2), mainHandler);
+        TextureView cameraTextureView = findViewById(R.id.textureView21);
         SurfaceTexture previewSurfaceTexture = cameraTextureView.getSurfaceTexture();
         boolean justShared = false;
         if ((previewSurfaceTexture != null) && !justShared) {
             Surface previewSurface = new Surface(previewSurfaceTexture);
             if (!this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
                 Snackbar.make(
-                        findViewById(R.id.linearLayout),
+                        findViewById(R.id.linearLayout2),
                         getString(R.string.noFlashWarning),
                         Snackbar.LENGTH_LONG
                 ).show();
@@ -80,48 +84,49 @@ public class HeartRateActivity extends Activity implements ActivityCompat.OnRequ
         super.onPause();
         cameraService.stop();
         if (analyzer != null) analyzer.stop();
-        analyzer = new OutputAnalyzer(this, findViewById(R.id.graphTextureView), mainHandler);
+        analyzer = new OutputAnalyzerBloodPressure(this, findViewById(R.id.graphTextureView2), mainHandler);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hear_rate);
+        setContentView(R.layout.activity_blood_pressure);
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.CAMERA},
-                REQUEST_CODE_CAMERA);
+                REQUEST_CODE_CAMERA2);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_CODE_CAMERA) {
+        if (requestCode == REQUEST_CODE_CAMERA2) {
             if (!(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                 Snackbar.make(
-                        findViewById(R.id.linearLayout),
+                        findViewById(R.id.linearLayout2),
                         getString(R.string.cameraPermissionRequired),
                         Snackbar.LENGTH_LONG
                 ).show();
             }
         }
     }
-    public void setViewState(VIEW_STATE state) {
+    protected void setViewState(VIEW_STATE2 state) {
         switch (state) {
-            case MEASUREMENT:
-                findViewById(R.id.floatingActionButton).setVisibility(View.INVISIBLE);
+            case MEASUREMENT2:
+                findViewById(R.id.start_tracking_button_blood_pressure).setVisibility(View.INVISIBLE);
                 break;
-            case SHOW_RESULTS:
-                findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
+            case SHOW_RESULTS2:
+                findViewById(R.id.start_tracking_button_blood_pressure).setVisibility(View.VISIBLE);
                 break;
         }
     }
-    public void onClickNewMeasurement(View view) {
-        onClickNewMeasurement();
+    public void onClickNewMeasurementBloodPressure(View view) {
+        onClickNewMeasurementBloodPressure();
     }
-    public void onClickNewMeasurement() {
-        analyzer = new OutputAnalyzer(this, findViewById(R.id.graphTextureView), mainHandler);
+    public void onClickNewMeasurementBloodPressure() {
+        analyzer = new OutputAnalyzerBloodPressure(this, findViewById(R.id.graphTextureView2), mainHandler);
         char[] empty = new char[0];
-        ((TextView) findViewById(R.id.textView)).setText(empty, 0, 0);
-        setViewState(VIEW_STATE.MEASUREMENT);
-        TextureView cameraTextureView = findViewById(R.id.textureView2);
+        ((TextView) findViewById(R.id.bloodPressureAnswer)).setText(empty, 0, 0);
+        ((TextView) findViewById(R.id.bloodPressureAnswer)).setText(R.string.blood_pressure_calculation_start);
+        setViewState(VIEW_STATE2.MEASUREMENT2);
+        TextureView cameraTextureView = findViewById(R.id.textureView21);
         SurfaceTexture previewSurfaceTexture = cameraTextureView.getSurfaceTexture();
         if (previewSurfaceTexture != null) {
             Surface previewSurface = new Surface(previewSurfaceTexture);

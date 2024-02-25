@@ -25,15 +25,13 @@
     <string name="phone_number">PHONE NUMBER</string>
     <string name="otp">OTP</string>
     <string name="a_6_digit_code_has_been_sent">A 6 digit code has been sent\nto +</string>
-    <string name="didn_t_receive_the_code">Didn\'t receive the code?</string>
+    <string name="didn_t_receive_the_code">Didn\'t receive the code?\t</string>
     <string name="resend">RESEND</string>
     <string name="verify">Verify</string>
     <string name="enter_number">Enter Number</string>
     <string name="a_6_digit_otp_will_be_sent_via_sms_n_to_verify_your_phone_number">A 6 digit OTP will be sent via SMS\n to verify your phone number.</string>
     <string name="profile_photo">PROFILE PHOTO</string>
     <string name="enter_name">Enter name</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="track_vitals">TRACK VITALS</string>
     <string name="blood_pressure">Blood pressure</string>
     <string name="heart_rate">Heart rate</string>
@@ -67,4 +65,14 @@
         <item quantity="one">Heart rate calculated: %2.1f BPM</item>
         <item quantity="other">Heart rate calculated: %2.1f BPM</item>
     </plurals>
+    <string name="usage_place_your_index_finger_on_the_camera_nto_start_tracking_blood_pressure">Usage- place your index finger on the camera to start tracking blood pressure.</string>
+    <string name="calculated_graph_2">Calculated graph</string>
+    <string name="blood_pressure_calculation_start">Blood pressure calculation started. Please wait.</string>
+    <plurals name="measurement_output_template_blood_pressure">
+        <item quantity="zero">Blood pressure calculated: %2.1f mmHg</item>
+        <item quantity="one">Blood pressure calculated: %2.1f mmHg</item>
+        <item quantity="other">Blood pressure calculated: %2.1f mmHg</item>
+    </plurals>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

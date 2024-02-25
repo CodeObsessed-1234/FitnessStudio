@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -19,7 +18,10 @@ public class MainUserInterface extends Fragment {
         View view=inflater.inflate(R.layout.fragment_main_user_interface, container, false);
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         LinearLayout bloodPressure=view.findViewById(R.id.blood_pressure);
-        bloodPressure.setOnClickListener(event-> Toast.makeText(getContext(),"Blood pressure", Toast.LENGTH_SHORT).show());
+        bloodPressure.setOnClickListener(event->{
+            getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_user_interface,new BloodPressureScreen()).commit();
+            requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+        });
         @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         LinearLayout heartRate=view.findViewById(R.id.heart_rate);
         heartRate.setOnClickListener(event->{

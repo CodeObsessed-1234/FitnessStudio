@@ -1,10 +1,10 @@
-package com.example.heartratedemo.heart_rate;
+package com.example.fitnessstudio.blood_pressure;
 
 import java.util.Date;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class MeasureStore {
-    private final CopyOnWriteArrayList<Measurement<Integer>> measurements = new CopyOnWriteArrayList<>();
+public class MeasureStoreBloodPressure {
+    private final CopyOnWriteArrayList<MeasurementBloodPressure<Integer>> measurements = new CopyOnWriteArrayList<>();
     private int minimum = 2147483647;
     private int maximum = -2147483648;
 
@@ -12,21 +12,21 @@ public class MeasureStore {
     private final int rollingAverageSize = 4;
 
     void add(int measurement) {
-        Measurement<Integer> measurementWithDate = new Measurement<>(new Date(), measurement);
+        MeasurementBloodPressure<Integer> measurementWithDate = new MeasurementBloodPressure<>(new Date(), measurement);
         measurements.add(measurementWithDate);
         if (measurement < minimum) minimum = measurement;
         if (measurement > maximum) maximum = measurement;
     }
 
-    CopyOnWriteArrayList<Measurement<Float>> getStdValues() {
-        CopyOnWriteArrayList<Measurement<Float>> stdValues = new CopyOnWriteArrayList<>();
+    CopyOnWriteArrayList<MeasurementBloodPressure<Float>> getStdValues() {
+        CopyOnWriteArrayList<MeasurementBloodPressure<Float>> stdValues = new CopyOnWriteArrayList<>();
         for (int i = 0; i < measurements.size(); i++) {
             int sum = 0;
             for (int rollingAverageCounter = 0; rollingAverageCounter < rollingAverageSize; rollingAverageCounter++) {
                 sum += measurements.get(Math.max(0, i - rollingAverageCounter)).measurement;
             }
-            Measurement<Float> stdValue =
-                    new Measurement<>(
+            MeasurementBloodPressure<Float> stdValue =
+                    new MeasurementBloodPressure<>(
                             measurements.get(i).timestamp,
                             ((float)sum / rollingAverageSize - minimum ) / (maximum - minimum));
             stdValues.add(stdValue);
@@ -36,7 +36,7 @@ public class MeasureStore {
     }
 
     @SuppressWarnings("SameParameterValue") // this parameter can be set at OutputAnalyzer
-    CopyOnWriteArrayList<Measurement<Integer>> getLastStdValues(int count) {
+    CopyOnWriteArrayList<MeasurementBloodPressure<Integer>> getLastStdValues(int count) {
         if (count < measurements.size()) {
             return  new CopyOnWriteArrayList<>(measurements.subList(measurements.size() - 1 - count, measurements.size() - 1));
         } else {

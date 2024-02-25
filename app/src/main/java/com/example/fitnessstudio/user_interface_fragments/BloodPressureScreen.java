@@ -13,16 +13,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.fitnessstudio.R;
-import com.example.fitnessstudio.heart_rate.HeartRateActivity;
+import com.example.fitnessstudio.blood_pressure.BloodPressureActivity;
 
-public class HeartRateScreen extends Fragment {
+public class BloodPressureScreen extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_heart_rate_screen, container, false);
-        AppCompatButton startTracking=view.findViewById(R.id.start_tracking);
+        View view=inflater.inflate(R.layout.fragment_blood_pressure_screen, container, false);
+        AppCompatButton startTracking=view.findViewById(R.id.start_tracking_blood_pressure);
         startTracking.setOnClickListener(event->{
-            Intent intent=new Intent(getContext(),HeartRateActivity.class);
+            Intent intent=new Intent(getContext(), BloodPressureActivity.class);
             startActivity(intent);
             requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         });

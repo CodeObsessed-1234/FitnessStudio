@@ -1,10 +1,5 @@
 package com.example.fitnessstudio.login_screen;
 
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.content.ContextCompat;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +10,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
+
 import com.example.fitnessstudio.R;
-import com.example.fitnessstudio.session.SessionManager;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -40,8 +40,9 @@ public class LoginScreen2 extends AppCompatActivity {
         editTexts[3]=this.findViewById(R.id.edit_text_otp_4);
         editTexts[4]=this.findViewById(R.id.edit_text_otp_5);
         editTexts[5]=this.findViewById(R.id.edit_text_otp_6);
-        for(EditText editText:editTexts)
-            editText.addTextChangedListener(new TextWatcher() {
+        for(int index=0;index<editTexts.length;index++) {
+            int finalIndex = index;
+            editTexts[index].addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -50,10 +51,10 @@ public class LoginScreen2 extends AppCompatActivity {
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     StringBuilder stringBuilder=new StringBuilder(s);
                     if(stringBuilder.toString().isEmpty())
-                        editText.setBackground(ContextCompat.getDrawable(LoginScreen2.this,R.drawable.otp_edit_text_background1));
+                        editTexts[finalIndex].setBackground(ContextCompat.getDrawable(LoginScreen2.this,R.drawable.otp_edit_text_background1));
                     else{
-                        editText.setBackground(ContextCompat.getDrawable(LoginScreen2.this,R.drawable.otp_edit_text_background2));
-                        editText.setCursorVisible(false);
+                        editTexts[finalIndex].setBackground(ContextCompat.getDrawable(LoginScreen2.this,R.drawable.otp_edit_text_background2));
+                        editTexts[finalIndex].setCursorVisible(false);
                     }
                 }
                 @Override
@@ -61,6 +62,7 @@ public class LoginScreen2 extends AppCompatActivity {
 
                 }
             });
+        }
         Intent intent=getIntent();
         String phoneNumberText=intent.getStringExtra("mobileNumber");
         assert phoneNumberText != null;
@@ -91,7 +93,7 @@ public class LoginScreen2 extends AppCompatActivity {
         });
         resendTextView.setOnClickListener(event-> sendOneTimePassword(firebaseAuth,phoneNumber,code));
     }
-    private void backToLoginScreen(View view){
+    public void backToLoginScreen(View view){
         Intent intent=new Intent(this, LoginScreen1.class);
         startActivity(intent);
         finish();

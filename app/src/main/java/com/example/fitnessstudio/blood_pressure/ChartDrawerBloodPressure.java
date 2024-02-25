@@ -1,4 +1,4 @@
-package com.example.heartratedemo.heart_rate;
+package com.example.fitnessstudio.blood_pressure;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -8,13 +8,13 @@ import android.view.TextureView;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class ChartDrawer
+public class ChartDrawerBloodPressure
 {
     private  final TextureView chartTextureView;
     private final Paint paint = new Paint();
     private final Paint fillWhite = new Paint();
 
-    ChartDrawer(TextureView chartTextureView) {
+    ChartDrawerBloodPressure(TextureView chartTextureView) {
         this.chartTextureView = chartTextureView;
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.GREEN);
@@ -23,7 +23,7 @@ public class ChartDrawer
         fillWhite.setStyle(Paint.Style.FILL);
         fillWhite.setColor(Color.rgb(51,51,51));
     }
-    void draw(CopyOnWriteArrayList<Measurement<Float>> data) {
+    void draw(CopyOnWriteArrayList<MeasurementBloodPressure<Float>> data) {
         Canvas chartCanvas = chartTextureView.lockCanvas();
         if (chartCanvas == null) return;
         chartCanvas.drawPaint(fillWhite);
@@ -33,7 +33,7 @@ public class ChartDrawer
         int dataAmount = data.size();
         float min = Float.MAX_VALUE;
         float max = Float.MIN_VALUE;
-        for (Measurement<Float> dataPoint :data) {
+        for (MeasurementBloodPressure<Float> dataPoint :data) {
             if (dataPoint.measurement < min) min = dataPoint.measurement;
             if (dataPoint.measurement > max) max = dataPoint.measurement;
         }

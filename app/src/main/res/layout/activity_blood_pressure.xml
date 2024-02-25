@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:descendantFocusability="afterDescendants"
-    android:focusable="auto"
-    android:id="@+id/linearLayout"
-    tools:context=".heart_rate.HeartRateActivity"
+    android:id="@+id/linearLayout2"
     android:background="@color/lightBlack"
+    tools:context=".blood_pressure.BloodPressureActivity"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,27 +16,26 @@
             android:layout_marginStart="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/heart_rate"
+            android:text="@string/blood_pressure"
             android:textAllCaps="true"
             android:textColor="@color/blue"
             android:textSize="25sp"
-            android:fontFamily="@font/inter_semibold"
             android:layout_marginTop="20dp"
-            />
+            android:fontFamily="@font/inter_semibold"/>
         <TextView
+            android:textColor="@color/green"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginStart="20dp"
-            android:text="@string/usage_place_your_index_finger_on_the_camera_nto_start_tracking_heart_rate"
+            android:text="@string/usage_place_your_index_finger_on_the_camera_nto_start_tracking_blood_pressure"
             android:textAlignment="center"
-            android:textColor="@color/green"
             android:textSize="18sp"
             tools:ignore="TextContrastCheck" />
         <TextureView
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:id="@+id/textureView2"
+            android:id="@+id/textureView21"
             android:layout_width="150dp"
             android:layout_height="150dp" />
     </LinearLayout>
@@ -50,17 +47,17 @@
             android:layout_marginStart="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/calculated_graph"
-            android:textAllCaps="true"
+            android:text="@string/calculated_graph_2"
             android:textColor="@color/blue"
-            android:textSize="25sp"
+            android:textAllCaps="true"
             android:fontFamily="@font/inter_semibold"
+            android:textSize="25sp"
             android:layout_marginTop="20dp"
             />
         <TextureView
             android:layout_marginTop="5dp"
             android:layout_marginStart="20dp"
-            android:id="@+id/graphTextureView"
+            android:id="@+id/graphTextureView2"
             android:layout_width="match_parent"
             android:layout_height="150dp"/>
         <TextView
@@ -70,18 +67,18 @@
             android:text="@string/result"
             android:textAllCaps="true"
             android:textColor="@color/blue"
-            android:textSize="25sp"
             android:fontFamily="@font/inter_semibold"
+            android:textSize="25sp"
             android:layout_marginTop="20dp"
             />
         <TextView
             android:layout_marginTop="5dp"
             android:layout_marginStart="20dp"
-            android:id="@+id/textView"
+            android:id="@+id/bloodPressureAnswer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/green"
-            android:text="@string/heart_rate_calculation_start"
+            android:text="@string/blood_pressure_calculation_start"
             android:textSize="18sp"
             tools:ignore="TextContrastCheck" />
     </LinearLayout>
@@ -94,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:onClick="onClickNewMeasurement"
+            android:onClick="onClickNewMeasurementBloodPressure"
             android:background="@drawable/button_background"
             android:fontFamily="@font/inter_semibold"
             android:text="@string/start_tracking"

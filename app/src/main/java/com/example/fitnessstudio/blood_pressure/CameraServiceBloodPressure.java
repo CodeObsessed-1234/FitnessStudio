@@ -1,4 +1,4 @@
-package com.example.heartratedemo.heart_rate;
+package com.example.fitnessstudio.blood_pressure;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -20,7 +20,7 @@ import androidx.core.app.ActivityCompat;
 import java.util.Collections;
 import java.util.Objects;
 
-public class CameraService {
+public class CameraServiceBloodPressure {
     private String cameraId;
     private final Activity activity;
     private final Handler handler;
@@ -29,7 +29,7 @@ public class CameraService {
 
     private CaptureRequest.Builder previewCaptureRequestBuilder;
 
-    CameraService(Activity _activity, Handler _handler) {
+    public CameraServiceBloodPressure(Activity _activity, Handler _handler) {
         activity = _activity;
         handler = _handler;
     }
@@ -43,7 +43,7 @@ public class CameraService {
             Log.e("camera", "No access to camera", e);
             handler.sendMessage(Message.obtain(
                     handler,
-                    HeartRateActivity.MESSAGE_CAMERA_NOT_AVAILABLE,
+                    BloodPressureActivity.MESSAGE_CAMERA_NOT_AVAILABLE2,
                     "No access to camera...."));
         }
         try {
@@ -51,7 +51,7 @@ public class CameraService {
                 Log.println(Log.ERROR, "camera", "No permission to take photos");
                 handler.sendMessage(Message.obtain(
                         handler,
-                        HeartRateActivity.MESSAGE_CAMERA_NOT_AVAILABLE,
+                        BloodPressureActivity.MESSAGE_CAMERA_NOT_AVAILABLE2,
                         "No permission to take photos"));
                 return;
             }
@@ -115,7 +115,7 @@ public class CameraService {
                 Log.println(Log.ERROR, "camera", e.getMessage());
                 handler.sendMessage(Message.obtain(
                         handler,
-                        HeartRateActivity.MESSAGE_CAMERA_NOT_AVAILABLE,
+                        BloodPressureActivity.MESSAGE_CAMERA_NOT_AVAILABLE2,
                         e.getMessage()));
             }
         }

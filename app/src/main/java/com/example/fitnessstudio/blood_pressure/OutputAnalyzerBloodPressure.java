@@ -1,19 +1,18 @@
-package com.example.heartratedemo.heart_rate;
+package com.example.fitnessstudio.blood_pressure;
+
 import android.graphics.Bitmap;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.view.TextureView;
-
-import com.example.heartratedemo.R;
-
+import com.example.fitnessstudio.R;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.concurrent.CopyOnWriteArrayList;
-public class OutputAnalyzer {
-    private final HeartRateActivity heartRateActivity;
-    private final ChartDrawer chartDrawer;
-    private MeasureStore store;
+public class OutputAnalyzerBloodPressure {
+    private final BloodPressureActivity heartRateActivity;
+    private final ChartDrawerBloodPressure chartDrawer;
+    private MeasureStoreBloodPressure store;
     private final int measurementInterval = 45;
     private final int measurementLength = 15000;
     private final int clipLength = 3500;
@@ -22,27 +21,27 @@ public class OutputAnalyzer {
     private final CopyOnWriteArrayList<Long> valleys = new CopyOnWriteArrayList<>();
     private CountDownTimer timer;
     private final Handler mainHandler;
-    OutputAnalyzer(HeartRateActivity activity, TextureView graphTextureView, Handler mainHandler) {
+    OutputAnalyzerBloodPressure(BloodPressureActivity activity, TextureView graphTextureView, Handler mainHandler) {
         this.heartRateActivity = activity;
-        this.chartDrawer = new ChartDrawer(graphTextureView);
+        this.chartDrawer = new ChartDrawerBloodPressure(graphTextureView);
         this.mainHandler = mainHandler;
     }
     private boolean detectValley() {
         final int valleyDetectionWindowSize = 13;
-        CopyOnWriteArrayList<Measurement<Integer>> subList = store.getLastStdValues(valleyDetectionWindowSize);
+        CopyOnWriteArrayList<MeasurementBloodPressure<Integer>> subList = store.getLastStdValues(valleyDetectionWindowSize);
         if (subList.size() < valleyDetectionWindowSize) {
             return false;
         } else {
             Integer referenceValue = subList.get((int) Math.ceil(valleyDetectionWindowSize / 2f)).measurement;
-            for (Measurement<Integer> measurement : subList) {
+            for (MeasurementBloodPressure<Integer> measurement : subList) {
                 if (measurement.measurement < referenceValue) return false;
             }
             return (!subList.get((int) Math.ceil(valleyDetectionWindowSize / 2f)).measurement.equals(
                     subList.get((int) Math.ceil(valleyDetectionWindowSize / 2f) - 1).measurement));
         }
     }
-    void measurePulse(TextureView textureView, CameraService cameraService) {
-        store = new MeasureStore();
+    void measurePulse(TextureView textureView, CameraServiceBloodPressure cameraService) {
+        store = new MeasureStoreBloodPressure();
         detectedValleys = 0;
         timer = new CountDownTimer(measurementLength, measurementInterval) {
             @Override
@@ -64,14 +63,14 @@ public class OutputAnalyzer {
                         valleys.add(store.getLastTimestamp().getTime());
                         String currentValue = String.format(
                                 Locale.getDefault(),
-                                heartRateActivity.getResources().getQuantityString(R.plurals.measurement_output_template, detectedValleys),
+                                heartRateActivity.getResources().getQuantityString(R.plurals.measurement_output_template_blood_pressure, detectedValleys),
                                 (valleys.size() == 1)
                                         ? (60f * (detectedValleys) / (Math.max(1, (measurementLength - millisUntilFinished - clipLength) / 1000f)))
                                         : (60f * (detectedValleys - 1) / (Math.max(1, (valleys.get(valleys.size() - 1) - valleys.get(0)) / 1000f))),
                                 detectedValleys,
                                 1f * (measurementLength - millisUntilFinished - clipLength) / 1000f);
 
-                        sendMessage(HeartRateActivity.MESSAGE_UPDATE_REALTIME, currentValue);
+                        sendMessage(BloodPressureActivity.MESSAGE_UPDATE_REALTIME2, currentValue);
                     }
                     Thread chartDrawerThread = new Thread(() -> chartDrawer.draw(store.getStdValues()));
                     chartDrawerThread.start();
@@ -80,28 +79,28 @@ public class OutputAnalyzer {
             }
             @Override
             public void onFinish() {
-                CopyOnWriteArrayList<Measurement<Float>> stdValues = store.getStdValues();
+                CopyOnWriteArrayList<MeasurementBloodPressure<Float>> stdValues = store.getStdValues();
                 if (valleys.size() == 0) {
                     mainHandler.sendMessage(Message.obtain(
                             mainHandler,
-                            HeartRateActivity.MESSAGE_CAMERA_NOT_AVAILABLE,
+                            BloodPressureActivity.MESSAGE_CAMERA_NOT_AVAILABLE2,
                             "No valleys detected - there may be an issue when accessing the camera."));
                     return;
                 }
                 String currentValue = String.format(
                         Locale.getDefault(),
-                        heartRateActivity.getResources().getQuantityString(R.plurals.measurement_output_template, detectedValleys - 1),
+                        heartRateActivity.getResources().getQuantityString(R.plurals.measurement_output_template_blood_pressure, detectedValleys - 1),
                         60f * (detectedValleys - 1) / (Math.max(1, (valleys.get(valleys.size() - 1) - valleys.get(0)) / 1000f)),
                         detectedValleys - 1,
                         1f * (valleys.get(valleys.size() - 1) - valleys.get(0)) / 1000f);
-                sendMessage(HeartRateActivity.MESSAGE_UPDATE_REALTIME, currentValue);
+                sendMessage(BloodPressureActivity.MESSAGE_UPDATE_REALTIME2, currentValue);
                 StringBuilder returnValueSb = new StringBuilder();
                 returnValueSb.append(currentValue);
                 returnValueSb.append(heartRateActivity.getString(R.string.row_separator));
                 returnValueSb.append(heartRateActivity.getString(R.string.raw_values));
                 returnValueSb.append(heartRateActivity.getString(R.string.row_separator));
                 for (int stdValueIdx = 0; stdValueIdx < stdValues.size(); stdValueIdx++) {
-                    Measurement<Float> value = stdValues.get(stdValueIdx);
+                    MeasurementBloodPressure<Float> value = stdValues.get(stdValueIdx);
                     String timeStampString =
                             new SimpleDateFormat(
                                     heartRateActivity.getString(R.string.dateFormatGranular),
@@ -118,11 +117,11 @@ public class OutputAnalyzer {
                     returnValueSb.append(tick);
                     returnValueSb.append(heartRateActivity.getString(R.string.row_separator));
                 }
-                sendMessage(HeartRateActivity.MESSAGE_UPDATE_FINAL, returnValueSb.toString());
+                sendMessage(BloodPressureActivity.MESSAGE_UPDATE_FINAL2, returnValueSb.toString());
                 cameraService.stop();
             }
         };
-        heartRateActivity.setViewState(HeartRateActivity.VIEW_STATE.MEASUREMENT);
+        heartRateActivity.setViewState(BloodPressureActivity.VIEW_STATE2.MEASUREMENT2);
         timer.start();
     }
     void stop() {

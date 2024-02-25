@@ -3,8 +3,6 @@ package com.example.fitnessstudio.user_interface;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.app.Fragment;
 import android.os.Bundle;
 
 import com.example.fitnessstudio.R;
