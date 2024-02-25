@@ -103,10 +103,10 @@ public class HeartRateActivity extends Activity implements ActivityCompat.OnRequ
     public void setViewState(VIEW_STATE state) {
         switch (state) {
             case MEASUREMENT:
-                findViewById(R.id.start_tracking_button_blood_pressure).setVisibility(View.INVISIBLE);
+                findViewById(R.id.start_tracking_button_heart_rate).setVisibility(View.INVISIBLE);
                 break;
             case SHOW_RESULTS:
-                findViewById(R.id.start_tracking_button_blood_pressure).setVisibility(View.VISIBLE);
+                findViewById(R.id.start_tracking_button_heart_rate).setVisibility(View.VISIBLE);
                 break;
         }
     }

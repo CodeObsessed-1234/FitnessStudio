@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp">
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/start_tracking_button_blood_pressure"
+            android:id="@+id/start_tracking_button_heart_rate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -98,8 +98,6 @@
             android:background="@drawable/button_background"
             android:fontFamily="@font/inter_semibold"
             android:text="@string/start_tracking"
-            android:paddingLeft="95dp"
-            android:paddingRight="95dp"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/textColor"
