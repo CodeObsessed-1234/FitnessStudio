@@ -126,6 +126,7 @@
             tools:ignore="LabelFor,SpeakableTextPresentCheck" />
         <EditText
             android:maxLength="1"
+            android:layout_margin="5dp"
             android:id="@+id/edit_text_otp_6"
             android:layout_width="50dp"
             android:layout_height="50dp"

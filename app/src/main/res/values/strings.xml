@@ -68,11 +68,10 @@
     <string name="usage_place_your_index_finger_on_the_camera_nto_start_tracking_blood_pressure">Usage- place your index finger on the camera to start tracking blood pressure.</string>
     <string name="calculated_graph_2">Calculated graph</string>
     <string name="blood_pressure_calculation_start">Blood pressure calculation started. Please wait.</string>
+    <string name="add_new_event">Add new event.</string>
     <plurals name="measurement_output_template_blood_pressure">
         <item quantity="zero">Blood pressure calculated: %2.1f mmHg</item>
         <item quantity="one">Blood pressure calculated: %2.1f mmHg</item>
         <item quantity="other">Blood pressure calculated: %2.1f mmHg</item>
     </plurals>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
