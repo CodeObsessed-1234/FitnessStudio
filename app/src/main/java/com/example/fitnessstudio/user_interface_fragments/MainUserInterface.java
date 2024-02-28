@@ -3,6 +3,7 @@ package com.example.fitnessstudio.user_interface_fragments;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,13 @@ public class MainUserInterface extends Fragment {
         LinearLayout events=view.findViewById(R.id.event);
         events.setOnClickListener(event->{
             Intent intent=new Intent(requireActivity(), EventActivityScreen.class);
+            startActivity(intent);
+            requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+        });
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        LinearLayout alarm=view.findViewById(R.id.alarm);
+        alarm.setOnClickListener(event->{
+            Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
             startActivity(intent);
             requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         });

@@ -79,6 +79,7 @@
                 />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/pedometer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="UseCompoundDrawables"
@@ -116,6 +117,7 @@
             android:fontFamily="@font/inter_semibold"
             />
         <LinearLayout
+            android:id="@+id/alarm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="UseCompoundDrawables"
@@ -161,6 +163,7 @@
                 />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/report"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="UseCompoundDrawables"

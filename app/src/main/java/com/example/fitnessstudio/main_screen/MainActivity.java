@@ -1,12 +1,11 @@
 package com.example.fitnessstudio.main_screen;
 
+import android.os.Bundle;
+import android.os.Handler;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.content.Context;
-import android.os.Bundle;
-import android.os.Handler;
 
 import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.splash_screen.SplashScreen;
