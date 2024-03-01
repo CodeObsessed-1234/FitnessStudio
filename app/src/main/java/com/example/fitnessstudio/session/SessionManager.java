@@ -14,12 +14,28 @@ public class SessionManager {
 		editor = sharedpreferences.edit();
 	}
 
-	public  static void addLoginSession(boolean isLogin) {
+	public static void addLoginSession(boolean isLogin) {
 		editor.putBoolean("Login", isLogin);
 		editor.commit();
 	}
 
-	public  boolean isLoggedIn() {
+	public static void addStepReset(boolean reset) {
+		editor.putBoolean("stepReset", reset);
+		editor.commit();
+	}
+
+	public static boolean getStepReset() {
+		return sharedpreferences.getBoolean("stepReset", false);
+	}
+	public static void addStepCount(long count){
+			editor.putLong("stepsCount",count);
+			editor.commit();
+	}
+	public static long getStepCount(){
+		return sharedpreferences.getLong("stepsCount",0L);
+	}
+
+	public boolean isLoggedIn() {
 		return sharedpreferences.getBoolean("Login", false);
 	}
 

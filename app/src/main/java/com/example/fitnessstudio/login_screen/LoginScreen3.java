@@ -42,8 +42,8 @@ public class LoginScreen3 extends AppCompatActivity {
     }
     private void addDataInDatabase(String name,String phoneNumber){
         HashMap<String,String> detailsMap=new HashMap<>();
-        detailsMap.put("User Name",name);
-        detailsMap.put("Phone Number",phoneNumber);
+        detailsMap.put("UserName",name);
+        detailsMap.put("PhoneNumber",phoneNumber);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference usersReference = database.getReference("Users");
         String key=usersReference.push().getKey();
