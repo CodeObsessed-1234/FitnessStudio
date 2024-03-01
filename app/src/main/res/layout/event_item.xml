@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	android:layout_marginHorizontal="16dp"
+	android:layout_marginVertical="8dp"
+	android:padding="8dp"
+	android:gravity="center_vertical"
+	android:background="@drawable/event_item_background">
+	<TextView
+		android:id="@+id/event_text"
+		android:fontFamily="@font/inter_semibold"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:padding="8dp"
+		android:textColor="@color/white"
+		android:textSize="15sp"
+		tools:ignore="TextContrastCheck" />
+	<ImageButton
+		android:id="@+id/delete_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="@color/green"
+		android:importantForAccessibility="no"
+		android:src="@drawable/delete"
+		tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+</LinearLayout>

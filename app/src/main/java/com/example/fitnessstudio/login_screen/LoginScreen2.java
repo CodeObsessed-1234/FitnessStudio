@@ -50,11 +50,19 @@ public class LoginScreen2 extends AppCompatActivity {
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     StringBuilder stringBuilder=new StringBuilder(s);
-                    if(stringBuilder.toString().isEmpty())
+                    if(stringBuilder.toString().isEmpty()){
                         editTexts[finalIndex].setBackground(ContextCompat.getDrawable(LoginScreen2.this,R.drawable.otp_edit_text_background1));
+                        if(finalIndex-1>=0){
+                            editTexts[finalIndex-1].requestFocus();
+                            editTexts[finalIndex-1].setCursorVisible(true);
+                        }
+
+                    }
                     else{
                         editTexts[finalIndex].setBackground(ContextCompat.getDrawable(LoginScreen2.this,R.drawable.otp_edit_text_background2));
                         editTexts[finalIndex].setCursorVisible(false);
+                        if(finalIndex+1<editTexts.length)
+                            editTexts[finalIndex+1].requestFocus();
                     }
                 }
                 @Override

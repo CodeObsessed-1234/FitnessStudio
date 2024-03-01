@@ -38,11 +38,7 @@ public class BloodPressureActivity extends Activity implements ActivityCompat.On
             if (msg.what == MESSAGE_UPDATE_REALTIME2) {
                 String string=msg.obj.toString();
                 string=string.substring(string.indexOf(":")+2,string.lastIndexOf(' '));
-                double answer=Double.parseDouble(string);
-                if(answer<120)
-                    answer=120.6;
-                else
-                    answer+=0.5;
+                double answer=Double.parseDouble(string)*2.0;
                 string="Blood pressure calculated: "+answer+" mmHg";
                 ((TextView) findViewById(R.id.bloodPressureAnswer)).setText(string);
             }
