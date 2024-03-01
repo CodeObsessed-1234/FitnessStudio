@@ -125,8 +125,8 @@ public class Pedometer extends AppCompatActivity implements SensorEventListener 
 		stopTrackingButtonStartTrackingButtonPedometer.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				SessionManager.addStepReset(true);
-//				SessionManager.addStepCount(stepCount);
+				SessionManager.addStepReset(true);
+				SessionManager.addStepCount(stepCount);
 				stopTrackingButtonStartTrackingButtonPedometer.setVisibility(View.GONE);
 				startTrackingButtonPedometer.setVisibility(View.VISIBLE);
 				Toast.makeText(Pedometer.this, "stop" + stepCount, Toast.LENGTH_SHORT).show();
@@ -158,11 +158,11 @@ public class Pedometer extends AppCompatActivity implements SensorEventListener 
 	public void onSensorChanged(SensorEvent event) {
 
 		if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
-//			if (SessionManager.getStepReset()) {
-//				stepCount = (long) event.values[0] - SessionManager.getStepCount();
-//			} else {
-//				stepCount = (long) event.values[0];
-//			}
+			if (SessionManager.getStepReset()) {
+				stepCount = (long) event.values[0] - SessionManager.getStepCount();
+			} else {
+				stepCount = (long) event.values[0];
+			}
 
 			stepCount = (long) event.values[0];
 			Toast.makeText(this, "change" + stepCount, Toast.LENGTH_SHORT).show();
