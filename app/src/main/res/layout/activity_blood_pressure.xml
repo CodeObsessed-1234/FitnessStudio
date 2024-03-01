@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/linearLayout2"
-    android:background="@color/lightBlack"
+    android:background="@color/light_black"
     tools:context=".blood_pressure.BloodPressureActivity"
     android:orientation="vertical">
     <LinearLayout

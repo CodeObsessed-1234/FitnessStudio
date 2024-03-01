@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".login_screen.LoginScreen1"
     android:orientation="vertical"
-    android:background="@color/lightBlack">
+    android:background="@color/light_black">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             app:ccp_contentColor="@color/blue"
             android:inputType="phone"
             app:ccpDialog_textColor="@color/green"
-            app:ccpDialog_background="@color/lightBlack"
+            app:ccpDialog_background="@color/light_black"
             tools:ignore="RtlSymmetry" />
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="2dp"

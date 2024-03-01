@@ -75,6 +75,7 @@
         <item quantity="one">Blood pressure calculated: %2.1f mmHg</item>
         <item quantity="other">Blood pressure calculated: %2.1f mmHg</item>
     </plurals>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_new_event">Add new event.</string>
+    <string name="_0">0</string>
+    <string name="select_the_target_steps">Select the target steps</string>
 </resources>

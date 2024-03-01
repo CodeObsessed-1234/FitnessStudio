@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.event.EventActivityScreen;
+import com.example.fitnessstudio.pedometer.Pedometer;
 
 public class MainUserInterface extends Fragment {
     @Override
@@ -42,6 +43,13 @@ public class MainUserInterface extends Fragment {
         LinearLayout alarm=view.findViewById(R.id.alarm);
         alarm.setOnClickListener(event->{
             Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
+            startActivity(intent);
+            requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+        });
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        LinearLayout pedometer=view.findViewById(R.id.pedometer);
+        pedometer.setOnClickListener(event->{
+            Intent intent = new Intent(requireActivity(),Pedometer.class);
             startActivity(intent);
             requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         });
