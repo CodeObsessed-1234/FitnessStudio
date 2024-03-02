@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/light_black"
+    tools:context=".pedometer.PedometerResult">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/result"
+            android:textAllCaps="true"
+            android:textColor="@color/blue"
+            android:textSize="25sp" />
+
+        <ProgressBar
+            android:id="@+id/pedometerProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_progressbar_circular_pedometer"
+            android:padding="10dp"
+            android:progressDrawable="@drawable/custom_progressbar_pedometer"
+            />
+
+        <TextView
+            android:id="@+id/pedometerAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/pedometer_calculation_start"
+            android:textColor="@color/green"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck" />
+
+
+        <TextView
+            android:id="@+id/pedometerAnswerDistance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/pedometer_calculation_start"
+            android:textColor="@color/green"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck" />
+
+    </LinearLayout>
+
+</FrameLayout>

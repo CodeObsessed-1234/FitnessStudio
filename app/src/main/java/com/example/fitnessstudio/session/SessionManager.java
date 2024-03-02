@@ -19,20 +19,40 @@ public class SessionManager {
 		editor.commit();
 	}
 
-	public static void addStepReset(boolean reset) {
+	public void addStepReset(boolean reset) {
 		editor.putBoolean("stepReset", reset);
 		editor.commit();
 	}
 
-	public static boolean getStepReset() {
+	public boolean getStepReset() {
 		return sharedpreferences.getBoolean("stepReset", false);
 	}
-	public static void addStepCount(long count){
-			editor.putLong("stepsCount",count);
-			editor.commit();
+
+	public void addStepCount(int count) {
+		editor.putInt("stepsCount", count);
+		editor.commit();
 	}
-	public static long getStepCount(){
-		return sharedpreferences.getLong("stepsCount",0L);
+
+	public int getStepCount() {
+		return sharedpreferences.getInt("stepsCount", 0);
+	}
+
+	public void addPresentStepCount(int count) {
+		editor.putInt("presentCount", count);
+		editor.commit();
+	}
+
+	public int getPresentStepCount() {
+		return sharedpreferences.getInt("presentCount", 0);
+	}
+
+	public void addTargetSteps(int count) {
+		editor.putInt("targetSteps", count);
+		editor.commit();
+	}
+
+	public int getTargetSteps() {
+		return sharedpreferences.getInt("targetSteps", 0);
 	}
 
 	public boolean isLoggedIn() {

@@ -6,7 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
+import android.app.ActivityManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -17,6 +21,7 @@ import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,32 +36,29 @@ import android.widget.Toast;
 
 import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.session.SessionManager;
+import com.example.fitnessstudio.user_interface_fragments.MainUserInterface;
 
 import java.util.Locale;
 
 import pl.droidsonroids.gif.GifImageView;
 
-public class Pedometer extends AppCompatActivity implements SensorEventListener {
-	private int targetStepsUser = 100;
-
-	private SensorManager sensorManager;
-	private Sensor stepCounterSensor;
-	private int notificationID = 1001;
-	private String channelId = "10001";
-	private long stepCount = 0;
+public class Pedometer extends AppCompatActivity {
+	private int targetStepsUser = 0;
 	private float stepLengthInMeters = 0.70f;
-	private long startTime;
 	private TextView pedometerAnswer;
 	private ProgressBar stepProgressbar;
 	private TextView pedometerAnswerDistance;
 	private AppCompatButton startTrackingButtonPedometer;
-	private AppCompatButton stopTrackingButtonStartTrackingButtonPedometer;
+	private SessionManager sessionManager;
 
 
 	@RequiresApi(api = Build.VERSION_CODES.Q)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		sessionManager = new SessionManager(this);
+		sessionManager.addStepReset(false);
+		Toast.makeText(this, "" + sessionManager.isLoggedIn(), Toast.LENGTH_SHORT).show();
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		if (ContextCompat.checkSelfPermission(Pedometer.this,
 		 android.Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED) {
@@ -68,117 +70,76 @@ public class Pedometer extends AppCompatActivity implements SensorEventListener 
 		EditText targetStepsField = findViewById(R.id.pedometerTargetSteps);
 		targetStepsField.requestFocus();
 
-		stepProgressbar = findViewById(R.id.pedometerProgressBar);
-		pedometerAnswer = findViewById(R.id.pedometerAnswer);
-		pedometerAnswerDistance = findViewById(R.id.pedometerAnswerDistance);
+
 		startTrackingButtonPedometer = findViewById(R.id.start_tracking_button_pedometer);
-		stopTrackingButtonStartTrackingButtonPedometer = findViewById(R.id.stop_tracking_button_start_tracking_button_pedometer);
 
 
-		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-		stepCounterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-
-
-		if (stepCounterSensor == null) {
-			pedometerAnswer.setText("StepCount Sensor is not Present");
+		if (ContextCompat.checkSelfPermission(Pedometer.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+			requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
 		}
+
+		Toast.makeText(this, "bo" + sessionManager.getStepReset(), Toast.LENGTH_SHORT).show();
+		Intent intent = getIntent();
+
+		AppCompatButton resultButton = findViewById(R.id.result_pedometer);
+		resultButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				setFragment(new PedometerResult());
+				resultButton.setVisibility(View.GONE);
+			}
+		});
 		startTrackingButtonPedometer.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				Intent intent = new Intent(Pedometer.this, MyServicePedometer.class);
-//				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//					ContextCompat.startForegroundService(Pedometer.this, intent);
-//				} else {
-//					startService(intent);
-//				}
-
-				if (stepCounterSensor != null) {
-					if (!targetStepsField.getText().toString().equals("")) {
-						targetStepsUser = Integer.parseInt(targetStepsField.getText().toString());
-					} else {
-						AlertDialog.Builder alertDialog = new AlertDialog.Builder(Pedometer.this);
-						alertDialog.setMessage("Enter target steps otherwise 0 is default value");
-						alertDialog.setCancelable(false);
-						alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								dialog.dismiss();
-
-								startTime = System.currentTimeMillis();
-								startTrackingButtonPedometer.setVisibility(View.GONE);
-								stopTrackingButtonStartTrackingButtonPedometer.setVisibility(View.VISIBLE);
-								stepProgressbar.setVisibility(View.VISIBLE);
-								pedometerAnswerDistance.setVisibility(View.VISIBLE);
-								GifImageView gifImageView = findViewById(R.id.pedometerAnim);
-								gifImageView.setVisibility(View.GONE);
-								Toast.makeText(Pedometer.this, "" + stepCount, Toast.LENGTH_SHORT).show();
-							}
-						});
-						alertDialog.show();
-						alertDialog.create();
-					}
-
+				if (isMyServiceRunning(MyServicePedometer.class)) {
+					stopService(new Intent(Pedometer.this, MyServicePedometer.class));
 				}
+
+				sessionManager.addStepReset(false);
+				if (!targetStepsField.getText().toString().equals("")) {
+					targetStepsUser = Integer.parseInt(targetStepsField.getText().toString());
+				}
+
+				sessionManager.addTargetSteps(targetStepsUser);
+				startService(new Intent(Pedometer.this, MyServicePedometer.class));
+
+				finish();
 			}
 
+
 		});
-		stopTrackingButtonStartTrackingButtonPedometer.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				SessionManager.addStepReset(true);
-				SessionManager.addStepCount(stepCount);
-				stopTrackingButtonStartTrackingButtonPedometer.setVisibility(View.GONE);
-				startTrackingButtonPedometer.setVisibility(View.VISIBLE);
-				Toast.makeText(Pedometer.this, "stop" + stepCount, Toast.LENGTH_SHORT).show();
-			}
-		});
+
+	}
+
+	private void setFragment(PedometerResult fragment) {
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		fragmentTransaction.add(R.id.frame_layout_pedometer_result, fragment);
+		fragmentTransaction.commit();
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		if (stepCounterSensor != null) {
-			sensorManager.unregisterListener(this);
-		}
 	}
 
 	@Override
 	protected void onResume() {
 
 		super.onResume();
-		sensorManager.registerListener(this, stepCounterSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
-		stepProgressbar.setMax(targetStepsUser);
-		stepCount = 0;
 		Toast.makeText(this, "yapp", Toast.LENGTH_SHORT).show();
 
 	}
 
-	@Override
-	public void onSensorChanged(SensorEvent event) {
-
-		if (event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
-			if (SessionManager.getStepReset()) {
-				stepCount = (long) event.values[0] - SessionManager.getStepCount();
-			} else {
-				stepCount = (long) event.values[0];
+	private boolean isMyServiceRunning(Class<?> serviceClass) {
+		ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+		for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+			if (serviceClass.getName().equals(service.service.getClassName())) {
+				return true;
 			}
-
-			stepCount = (long) event.values[0];
-			Toast.makeText(this, "change" + stepCount, Toast.LENGTH_SHORT).show();
-			pedometerAnswer.setText("The Step Walked... " + stepCount);
-			stepProgressbar.setProgress((int) stepCount);
-			if (stepCount >= targetStepsUser) {
-				pedometerAnswer.setText("TargetAchived :) You Walked... " + stepCount + " steps");
-			}
-			float distanceInKm = stepCount * stepLengthInMeters / 100;
-			pedometerAnswerDistance.setText(String.format(Locale.getDefault(), "Distance: %2f KM", distanceInKm));
 		}
-	}
-
-
-	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
+		return false;
 	}
 }

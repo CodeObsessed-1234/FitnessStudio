@@ -4,10 +4,9 @@
     android:toDegrees="270">
     <shape android:innerRadiusRatio="2.5"
         android:shape="ring"
-        android:thickness="5.6sp"
+        android:thickness="28sp"
         android:useLevel="true">
         <gradient android:angle="0"
-            android:endColor="@color/light_black"
             android:startColor="#2F74FF"
             android:type="sweep"
             android:useLevel="false"/>
