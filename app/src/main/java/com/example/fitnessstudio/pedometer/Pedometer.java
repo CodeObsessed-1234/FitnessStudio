@@ -41,6 +41,9 @@ public class Pedometer extends AppCompatActivity {
 		 android.Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED) {
 			requestPermissions(new String[]{android.Manifest.permission.ACTIVITY_RECOGNITION}, 19);
 		}
+		if (ContextCompat.checkSelfPermission(Pedometer.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+			requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
+		}
 		setContentView(R.layout.activity_pedometer);
 
 		EditText targetStepsField = findViewById(R.id.pedometerTargetSteps);
@@ -48,11 +51,6 @@ public class Pedometer extends AppCompatActivity {
 
 
 		startTrackingButtonPedometer = findViewById(R.id.start_tracking_button_pedometer);
-
-
-		if (ContextCompat.checkSelfPermission(Pedometer.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-			requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
-		}
 
 
 		AppCompatButton resultButton = findViewById(R.id.result_pedometer);
