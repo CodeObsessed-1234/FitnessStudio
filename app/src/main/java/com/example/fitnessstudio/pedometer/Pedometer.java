@@ -26,10 +26,6 @@ import com.example.fitnessstudio.session.SessionManager;
 
 public class Pedometer extends AppCompatActivity {
 	private int targetStepsUser = 0;
-	private float stepLengthInMeters = 0.70f;
-	private TextView pedometerAnswer;
-	private ProgressBar stepProgressbar;
-	private TextView pedometerAnswerDistance;
 	private AppCompatButton startTrackingButtonPedometer;
 	private SessionManager sessionManager;
 
@@ -55,10 +51,9 @@ public class Pedometer extends AppCompatActivity {
 
 
 		if (ContextCompat.checkSelfPermission(Pedometer.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-			requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
+			requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 101);
 		}
 
-		Intent intent = getIntent();
 
 		AppCompatButton resultButton = findViewById(R.id.result_pedometer);
 		resultButton.setOnClickListener(new View.OnClickListener() {
