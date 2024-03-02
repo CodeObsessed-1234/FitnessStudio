@@ -1,46 +1,28 @@
 package com.example.fitnessstudio.pedometer;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.app.ActivityManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.Service;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorListener;
-import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.session.SessionManager;
-import com.example.fitnessstudio.user_interface_fragments.MainUserInterface;
 
-import java.util.Locale;
-
-import pl.droidsonroids.gif.GifImageView;
 
 public class Pedometer extends AppCompatActivity {
 	private int targetStepsUser = 0;
@@ -58,7 +40,6 @@ public class Pedometer extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		sessionManager = new SessionManager(this);
 		sessionManager.addStepReset(false);
-		Toast.makeText(this, "" + sessionManager.isLoggedIn(), Toast.LENGTH_SHORT).show();
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		if (ContextCompat.checkSelfPermission(Pedometer.this,
 		 android.Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED) {
@@ -66,7 +47,6 @@ public class Pedometer extends AppCompatActivity {
 		}
 		setContentView(R.layout.activity_pedometer);
 
-		Toast.makeText(Pedometer.this, "ff", Toast.LENGTH_SHORT).show();
 		EditText targetStepsField = findViewById(R.id.pedometerTargetSteps);
 		targetStepsField.requestFocus();
 
@@ -78,7 +58,6 @@ public class Pedometer extends AppCompatActivity {
 			requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
 		}
 
-		Toast.makeText(this, "bo" + sessionManager.getStepReset(), Toast.LENGTH_SHORT).show();
 		Intent intent = getIntent();
 
 		AppCompatButton resultButton = findViewById(R.id.result_pedometer);
@@ -129,7 +108,6 @@ public class Pedometer extends AppCompatActivity {
 
 		super.onResume();
 
-		Toast.makeText(this, "yapp", Toast.LENGTH_SHORT).show();
 
 	}
 

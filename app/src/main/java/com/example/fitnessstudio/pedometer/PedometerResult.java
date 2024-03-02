@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.session.SessionManager;
@@ -36,13 +35,10 @@ public class PedometerResult extends Fragment {
 
 		stepProgressbar.setMax(sessionManager.getTargetSteps());
 		stepProgressbar.setProgress(sessionManager.getStepCount());
-		Toast.makeText(getContext(), "targetStep" + sessionManager.getTargetSteps(), Toast.LENGTH_SHORT).show();
-		Toast.makeText(getContext(), "progress" + sessionManager.getPresentStepCount(), Toast.LENGTH_SHORT).show();
 		pedometerAnswer.setText("Steps walked..." + sessionManager.getPresentStepCount() + " / " + sessionManager.getTargetSteps());
 
 		float distanceInKm = (float) ((sessionManager.getStepCount() * 0.2) / 1000);
 		pedometerAnswerDistance.setText(String.format(Locale.getDefault(), "Distance: %2f KM", distanceInKm));
-
 		return view;
 	}
 }

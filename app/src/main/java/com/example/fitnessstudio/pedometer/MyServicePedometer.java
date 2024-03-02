@@ -1,40 +1,23 @@
 package com.example.fitnessstudio.pedometer;
 
-import static android.os.Process.THREAD_PRIORITY_BACKGROUND;
-
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.SensorListener;
 import android.hardware.SensorManager;
-import android.media.MediaPlayer;
 import android.os.Build;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.IBinder;
-import android.os.Looper;
-import android.os.Message;
-import android.provider.Settings;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
 
 import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.session.SessionManager;
 
-import java.util.Locale;
-import java.util.Map;
 
 public class MyServicePedometer extends Service implements SensorEventListener {
 	private SessionManager sessionManager;
@@ -62,7 +45,7 @@ public class MyServicePedometer extends Service implements SensorEventListener {
 
 		PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), PendingIntent.FLAG_UPDATE_CURRENT, intent2, PendingIntent.FLAG_IMMUTABLE);
 
-		notificationContentText = stepCount+" steps.";
+		notificationContentText = stepCount + " steps.";
 		builder = new NotificationCompat.Builder(this, ChannelId)
 		 .setSmallIcon(R.drawable.fitness_studio_icon)
 		 .setContentTitle("Start Walking :)")
@@ -98,7 +81,6 @@ public class MyServicePedometer extends Service implements SensorEventListener {
 	public void onDestroy() {
 		notificationManager.cancel(0);
 		sessionManager.addStepCount(stepCount);
-		Toast.makeText(this, "destroyed" + sessionManager.getStepCount(), Toast.LENGTH_SHORT).show();
 		sensorManager.unregisterListener(this);
 		super.onDestroy();
 	}
@@ -111,16 +93,13 @@ public class MyServicePedometer extends Service implements SensorEventListener {
 			++count;
 			stepCount = (int) Math.abs(event.values[0] - sessionManager.getStepCount());
 			sessionManager.addPresentStepCount(stepCount);
-			Toast.makeText(this, "for broadcast " + stepCount, Toast.LENGTH_SHORT).show();
 			notificationManager.cancel(0);
 			builder.setContentText(String.valueOf(stepCount));
 			notificationManager.notify(0, builder.build());
-			Toast.makeText(this, "change" + stepCount, Toast.LENGTH_SHORT).show();
-
 
 
 		}
-		Toast.makeText(this, "changed op service", Toast.LENGTH_SHORT).show();
+
 	}
 
 	@Override

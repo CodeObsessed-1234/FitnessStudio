@@ -15,7 +15,6 @@ public class PedometerReceiver extends BroadcastReceiver {
 		SessionManager sessionManager = new SessionManager(context);
 		int val = sessionManager.getPresentStepCount();
 		Log.d("TAG", "onReceive: " + val);
-		Toast.makeText(context, "c"+context, Toast.LENGTH_SHORT).show();
 
 	}
 }

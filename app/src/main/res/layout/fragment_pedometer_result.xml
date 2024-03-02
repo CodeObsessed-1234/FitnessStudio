@@ -24,6 +24,7 @@
             android:textSize="25sp" />
 
         <ProgressBar
+
             android:id="@+id/pedometerProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="230dp"
