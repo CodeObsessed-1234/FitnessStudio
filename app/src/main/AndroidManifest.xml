@@ -47,11 +47,8 @@
             android:exported="false" />
         <activity
             android:name=".user_interface.UserInterface"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
+
         </activity>
         <activity
             android:name=".login_screen.LoginScreen3"
@@ -64,7 +61,11 @@
             android:exported="false" />
         <activity
             android:name=".main_screen.MainActivity"
-            android:exported="false">
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <meta-data
             android:name="preloaded_fonts"
