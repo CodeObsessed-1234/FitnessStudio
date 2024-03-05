@@ -23,6 +23,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class LoginScreen2 extends AppCompatActivity {
@@ -91,6 +92,7 @@ public class LoginScreen2 extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Intent intentNext=new Intent(this, LoginScreen3.class);
                     intentNext.putExtra("mobileNumber",phoneNumber);
+                    intentNext.putExtra("uid", Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid());
                     startActivity(intentNext);
                     overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
                     finish();
