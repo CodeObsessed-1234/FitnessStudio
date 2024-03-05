@@ -21,7 +21,6 @@ import com.example.fitnessstudio.session.SessionManager;
 
 public class MyServicePedometer extends Service implements SensorEventListener {
 	private SessionManager sessionManager;
-	//	private MediaPlayer mediaPlayer;
 	private final String ChannelId = "1001";
 	private NotificationManager notificationManager;
 	private NotificationCompat.Builder builder;
