@@ -21,18 +21,19 @@ public class EventActivityScreen extends Activity {
 	EditText addEditText;
 	EventItemAdapter todoAdapter;
 
-    @SuppressLint("SuspiciousIndentation")
+	@SuppressLint("SuspiciousIndentation")
 	@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_screen);
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_event_screen);
+
 		eventDatabaseHandler = new EventDatabaseHandler(this);
 		recyclerView = findViewById(R.id.recycler);
 		addButton = findViewById(R.id.add_button);
 		addEditText = findViewById(R.id.add_edittext);
 		List<Event> todos = eventDatabaseHandler.getAllTodoItems();
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
-		todoAdapter =  new EventItemAdapter(this, todos, eventDatabaseHandler);
+		todoAdapter = new EventItemAdapter(this, todos, eventDatabaseHandler);
 		recyclerView.setAdapter(todoAdapter);
 
 		addButton.setOnClickListener(view -> {
@@ -43,6 +44,7 @@ public class EventActivityScreen extends Activity {
 
 				if (itemId != -1) {
 					Event newTodo = new Event(text, false);
+					newTodo.setId(itemId);
 					todoAdapter.addItem(newTodo);
 
 					int position = todoAdapter.getItemCount() - 1;
@@ -57,5 +59,5 @@ public class EventActivityScreen extends Activity {
 				Toast.makeText(getApplicationContext(), "Please enter something....", Toast.LENGTH_SHORT).show();
 			}
 		});
-    }
+	}
 }
