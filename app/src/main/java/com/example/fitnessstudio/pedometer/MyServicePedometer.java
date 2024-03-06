@@ -21,31 +21,28 @@ import com.example.fitnessstudio.session.SessionManager;
 
 public class MyServicePedometer extends Service implements SensorEventListener {
 	private SessionManager sessionManager;
-	private final String ChannelId = "1001";
 	private NotificationManager notificationManager;
 	private NotificationCompat.Builder builder;
 	private int stepCount = 0;
 
 	private int count = 0;
-	private Intent intent2;
 	private SensorManager sensorManager;
-	private Sensor stepCounterSensor;
-	private String notificationContentText;
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		sessionManager = new SessionManager(this);
 		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-		stepCounterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+		Sensor stepCounterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 		sensorManager.registerListener(this, stepCounterSensor, SensorManager.SENSOR_DELAY_NORMAL);
 
 
-		intent2 = new Intent(getApplicationContext(), PedometerReceiver.class);
+		Intent intent2 = new Intent(getApplicationContext(), PedometerReceiver.class);
 
 		PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), PendingIntent.FLAG_UPDATE_CURRENT, intent2, PendingIntent.FLAG_IMMUTABLE);
 
-		notificationContentText = stepCount + " steps.";
-		builder = new NotificationCompat.Builder(this, ChannelId)
+		String notificationContentText = stepCount + " steps.";
+		String channelId = "1001";
+		builder = new NotificationCompat.Builder(this, channelId)
 		 .setSmallIcon(R.drawable.fitness_studio_icon)
 		 .setContentTitle("Start Walking :)")
 		 .setContentText(notificationContentText)
@@ -55,7 +52,7 @@ public class MyServicePedometer extends Service implements SensorEventListener {
 			int importance = NotificationManager.IMPORTANCE_HIGH;
 			NotificationChannel channel = null;
 			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-				channel = new NotificationChannel(ChannelId, "name", importance);
+				channel = new NotificationChannel(channelId, "name", importance);
 			}
 			channel.setDescription("description");
 			builder.setOngoing(true);

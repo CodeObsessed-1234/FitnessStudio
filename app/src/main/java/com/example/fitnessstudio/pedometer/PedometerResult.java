@@ -18,20 +18,15 @@ import java.util.Locale;
 
 public class PedometerResult extends Fragment {
 
-	private ProgressBar stepProgressbar;
-	private TextView pedometerAnswer;
-	private TextView pedometerAnswerDistance;
-	private SessionManager sessionManager;
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 													 Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_pedometer_result, container, false);
-		sessionManager = new SessionManager(getContext());
-		stepProgressbar = view.findViewById(R.id.pedometerProgressBar);
-		pedometerAnswer = view.findViewById(R.id.pedometerAnswer);
-		pedometerAnswerDistance = view.findViewById(R.id.pedometerAnswerDistance);
+		SessionManager sessionManager = new SessionManager(requireContext());
+		ProgressBar stepProgressbar = view.findViewById(R.id.pedometerProgressBar);
+		TextView pedometerAnswer = view.findViewById(R.id.pedometerAnswer);
+		TextView pedometerAnswerDistance = view.findViewById(R.id.pedometerAnswerDistance);
 
 		stepProgressbar.setMax(sessionManager.getTargetSteps());
 		stepProgressbar.setProgress(sessionManager.getStepCount());

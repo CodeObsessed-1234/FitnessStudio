@@ -23,7 +23,6 @@ import com.example.fitnessstudio.session.SessionManager;
 
 public class Pedometer extends AppCompatActivity {
 	private int targetStepsUser = 0;
-	private AppCompatButton startTrackingButtonPedometer;
 	private SessionManager sessionManager;
 
 
@@ -45,36 +44,28 @@ public class Pedometer extends AppCompatActivity {
 		targetStepsField.requestFocus();
 
 
-		startTrackingButtonPedometer = findViewById(R.id.start_tracking_button_pedometer);
+		AppCompatButton startTrackingButtonPedometer = findViewById(R.id.start_tracking_button_pedometer);
 
 
 		AppCompatButton resultButton = findViewById(R.id.result_pedometer);
-		resultButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				setFragment(new PedometerResult());
-				resultButton.setVisibility(View.GONE);
-			}
+		resultButton.setOnClickListener(v -> {
+			setFragment(new PedometerResult());
+			resultButton.setVisibility(View.GONE);
 		});
-		startTrackingButtonPedometer.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (isMyServiceRunning(MyServicePedometer.class)) {
-					stopService(new Intent(Pedometer.this, MyServicePedometer.class));
-				}
-
-				sessionManager.addStepReset(false);
-				if (!targetStepsField.getText().toString().equals("")) {
-					targetStepsUser = Integer.parseInt(targetStepsField.getText().toString());
-				}
-
-				sessionManager.addTargetSteps(targetStepsUser);
-				startService(new Intent(Pedometer.this, MyServicePedometer.class));
-
-				finish();
+		startTrackingButtonPedometer.setOnClickListener(v -> {
+			if (isMyServiceRunning(MyServicePedometer.class)) {
+				stopService(new Intent(Pedometer.this, MyServicePedometer.class));
 			}
 
+			sessionManager.addStepReset(false);
+			if (!targetStepsField.getText().toString().equals("")) {
+				targetStepsUser = Integer.parseInt(targetStepsField.getText().toString());
+			}
 
+			sessionManager.addTargetSteps(targetStepsUser);
+			startService(new Intent(Pedometer.this, MyServicePedometer.class));
+
+			finish();
 		});
 
 	}

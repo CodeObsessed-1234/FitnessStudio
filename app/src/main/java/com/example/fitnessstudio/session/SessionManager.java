@@ -24,9 +24,7 @@ public class SessionManager {
 		editor.commit();
 	}
 
-	public boolean getStepReset() {
-		return sharedpreferences.getBoolean("stepReset", false);
-	}
+
 
 	public void addStepCount(int count) {
 		editor.putInt("stepsCount", count);
@@ -59,8 +57,5 @@ public class SessionManager {
 		return sharedpreferences.getBoolean("Login", false);
 	}
 
-	public void logoutSession() {
-		editor.clear();
-		editor.commit();
-	}
+
 }
