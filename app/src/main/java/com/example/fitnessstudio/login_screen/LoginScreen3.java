@@ -49,8 +49,9 @@ public class LoginScreen3 extends AppCompatActivity {
 		FirebaseDatabase database = FirebaseDatabase.getInstance();
 		DatabaseReference usersReference = database.getReference("Users").child(uid);
 
-		UserData userData = new UserData(Calendar.getInstance().get(Calendar.MONTH) + 1 +"-"+ Calendar.getInstance().get(Calendar.YEAR), name, email, phoneNumber);
-
+		UserData userData = new UserData(Calendar.getInstance().get(Calendar.MONTH) + 1 + "-" + Calendar.getInstance().get(Calendar.YEAR), name, email, phoneNumber);
+		SessionManager sessionManager = new SessionManager(this);
+		sessionManager.addUserId(uid);
 		usersReference.setValue(userData);
 	}
 }
