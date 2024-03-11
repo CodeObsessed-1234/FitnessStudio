@@ -58,6 +58,19 @@
             android:textColor="@color/green"
             android:textSize="18sp"
             tools:ignore="TextContrastCheck" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add to Report"
+            android:id="@+id/addToReportPedometer"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:background="@color/red"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"
+           />
 
     </LinearLayout>
 

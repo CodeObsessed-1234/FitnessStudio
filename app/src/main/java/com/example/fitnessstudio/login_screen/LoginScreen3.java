@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginScreen3 extends AppCompatActivity {
 	@Override
@@ -48,8 +50,10 @@ public class LoginScreen3 extends AppCompatActivity {
 	private void addDataInDatabase(String uid, String name, String phoneNumber, String email) {
 		FirebaseDatabase database = FirebaseDatabase.getInstance();
 		DatabaseReference usersReference = database.getReference("Users").child(uid);
-
-		UserData userData = new UserData(Calendar.getInstance().get(Calendar.MONTH) + 1 + "-" + Calendar.getInstance().get(Calendar.YEAR), name, email, phoneNumber);
+		Map<String, Object> heartRateMap = new HashMap<>();
+		Map<String, Object> bloodPressureMap = new HashMap<>();
+		Map<String, Object> pedometerMap = new HashMap<>();
+		UserData userData = new UserData(Calendar.getInstance().get(Calendar.MONTH) + 1 + "-" + Calendar.getInstance().get(Calendar.YEAR), name, email, phoneNumber,heartRateMap,bloodPressureMap,pedometerMap);
 		SessionManager sessionManager = new SessionManager(this);
 		sessionManager.addUserId(uid);
 		usersReference.setValue(userData);
