@@ -78,7 +78,6 @@
     <string name="add_new_event">Add new event.</string>
     <string name="_0">0</string>
     <string name="select_the_target_steps">Select the target steps</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_email">Enter email</string>
+    <string name="next">Next</string>
 </resources>

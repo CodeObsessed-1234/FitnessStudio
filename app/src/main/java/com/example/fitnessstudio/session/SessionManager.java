@@ -61,9 +61,7 @@ public class SessionManager {
 		editor.putString("uid",Uid);
 		editor.commit();
 	}
-	public String getUserId(){
+	public static String getUserId(){
 		return sharedpreferences.getString("uid",null);
 	}
-
-
 }

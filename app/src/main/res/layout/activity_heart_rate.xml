@@ -88,6 +88,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_margin="20dp">
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/start_tracking_button_heart_rate"
@@ -98,6 +99,20 @@
             android:background="@drawable/button_background"
             android:fontFamily="@font/inter_semibold"
             android:text="@string/start_tracking"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"
+            tools:ignore="VisualLintButtonSize,TextContrastCheck"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:visibility="invisible"
+            android:id="@+id/save_heart_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/next"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/textColor"
