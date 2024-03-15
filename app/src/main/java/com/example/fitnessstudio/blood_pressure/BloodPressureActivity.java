@@ -117,9 +117,9 @@ public class BloodPressureActivity extends Activity implements ActivityCompat.On
             HashMap<String,String> map=new HashMap<>();
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             String address="Users/"+userId;
-            DatabaseReference usersReference = database.getReference(address).child("bloodPressureMap");
+            DatabaseReference usersReference = database.getReference(address).child("bloodPressureMap").child(dateInString);
             if(answerStored!=0.0D)
-                map.put(dateInString,answerStored+"");
+                map.put("value",answerStored+"");
             usersReference.setValue(map);
         });
     }

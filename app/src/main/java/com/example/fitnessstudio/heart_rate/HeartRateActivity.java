@@ -112,9 +112,9 @@ public class HeartRateActivity extends Activity implements ActivityCompat.OnRequ
             HashMap<String,String> map=new HashMap<>();
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             String address="Users/"+userId;
-            DatabaseReference usersReference = database.getReference(address).child("heartRateMap");
+            DatabaseReference usersReference = database.getReference(address).child("heartRateMap").child(dateInString);
             if(answerStored!=0.0D)
-                map.put(dateInString,answerStored+"");
+                map.put("value",answerStored+"");
             usersReference.setValue(map);
             Intent intent=new Intent(this,UserInterface.class);
             startActivity(intent);
