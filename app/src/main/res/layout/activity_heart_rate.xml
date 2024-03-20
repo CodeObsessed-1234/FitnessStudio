@@ -112,7 +112,7 @@
             android:layout_gravity="center"
             android:background="@drawable/button_background"
             android:fontFamily="@font/inter_semibold"
-            android:text="@string/next"
+            android:text="@string/finish"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/textColor"

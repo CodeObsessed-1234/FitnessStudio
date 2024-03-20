@@ -3,7 +3,6 @@ package com.example.fitnessstudio.heart_rate;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.os.Bundle;
@@ -23,7 +22,6 @@ import androidx.core.app.ActivityCompat;
 import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.report_generation.ReportGeneration;
 import com.example.fitnessstudio.session.SessionManager;
-import com.example.fitnessstudio.user_interface.UserInterface;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -116,10 +114,6 @@ public class HeartRateActivity extends Activity implements ActivityCompat.OnRequ
             if(answerStored!=0.0D)
                 map.put("value",answerStored+"");
             usersReference.setValue(map);
-            Intent intent=new Intent(this,UserInterface.class);
-            startActivity(intent);
-            finish();
-            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         });
     }
     @Override

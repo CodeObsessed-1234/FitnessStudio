@@ -7,18 +7,15 @@
     android:background="@color/light_black"
     android:orientation="vertical"
     tools:context=".pedometer.Pedometer">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:orientation="vertical">
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -28,14 +25,12 @@
                 android:textAllCaps="true"
                 android:textColor="@color/blue"
                 android:textSize="25sp" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="horizontal">
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -51,19 +46,15 @@
                     android:id="@+id/pedometerTargetSteps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:hint="@string/_0"
                     android:importantForAutofill="no"
                     android:inputType="number"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:textColor="@color/white"
-
                     android:textColorHint="@color/grey2"
                     tools:ignore="TouchTargetSizeCheck" />
-
             </LinearLayout>
-
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/pedometerAnim"
                 android:layout_width="wrap_content"
@@ -72,12 +63,10 @@
                 android:paddingTop="20dp"
                 android:src="@drawable/pedometer_screen_animation" />
         </LinearLayout>
-
         <FrameLayout
             android:id="@+id/frame_layout_pedometer_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,22 +74,21 @@
             android:layout_margin="20dp"
             android:gravity="center"
             android:orientation="vertical">
-
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/result_pedometer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
-                android:background="@color/red"
+                android:background="@drawable/button_background"
+                android:backgroundTint="@color/red"
                 android:fontFamily="@font/inter_semibold"
-                android:text="Result"
+                android:text="@string/result"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/textColor"
                 android:textSize="20sp"
                 tools:ignore="VisualLintButtonSize,TextContrastCheck" />
-
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/start_tracking_button_pedometer"
                 android:layout_width="match_parent"
@@ -114,10 +102,6 @@
                 android:textColor="@color/textColor"
                 android:textSize="20sp"
                 tools:ignore="VisualLintButtonSize,TextContrastCheck" />
-
-
         </LinearLayout>
-
     </LinearLayout>
-
 </ScrollView>

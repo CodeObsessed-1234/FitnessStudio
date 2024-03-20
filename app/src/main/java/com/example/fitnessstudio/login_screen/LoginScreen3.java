@@ -35,7 +35,7 @@ public class LoginScreen3 extends AppCompatActivity {
 			SessionManager.addLoginSession(true);
 			String enteredName = name.getText().toString();
 			String emailEntered = email.getText().toString();
-			if (TextUtils.isEmpty(enteredName) || TextUtils.isEmpty(emailEntered))
+			if (TextUtils.isEmpty(enteredName) || TextUtils.isEmpty(emailEntered) || emailEntered.indexOf('@')<0)
 				Toast.makeText(this, "Enter valid details.", Toast.LENGTH_SHORT).show();
 			else {
 				addDataInDatabase(uid, enteredName, phoneNumber, emailEntered);

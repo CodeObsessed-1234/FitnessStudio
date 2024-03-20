@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +15,7 @@ import com.example.fitnessstudio.R;
 
 import java.util.List;
 
+/** @noinspection ALL*/
 public class EventItemAdapter extends RecyclerView.Adapter<EventItemAdapter.ViewHolder> {
 	private final List<Event> mData;
 	private final LayoutInflater mInflater;
@@ -24,9 +24,9 @@ public class EventItemAdapter extends RecyclerView.Adapter<EventItemAdapter.View
 
 	EventItemAdapter(Context context, List<Event> data, EventDatabaseHandler dbHelper) {
       this.context = context;
-		this.mInflater = LayoutInflater.from(context);
-		this.mData = data;
-		this.eventDatabaseHandler = dbHelper;
+	  this.mInflater = LayoutInflater.from(context);
+	  this.mData = data;
+	  this.eventDatabaseHandler = dbHelper;
 	}
 
 	@NonNull
@@ -39,7 +39,6 @@ public class EventItemAdapter extends RecyclerView.Adapter<EventItemAdapter.View
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
 		Event todo = mData.get(position);
-		Toast.makeText(context, "binding"+position, Toast.LENGTH_SHORT).show();
 		holder.todoText.setText(todo.getTask());
 		holder.todoText.setPaintFlags(todo.isCompleted() ? Paint.STRIKE_THRU_TEXT_FLAG : 0);
 	}

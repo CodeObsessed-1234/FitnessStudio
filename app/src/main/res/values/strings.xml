@@ -80,4 +80,6 @@
     <string name="select_the_target_steps">Select the target steps</string>
     <string name="enter_email">Enter email</string>
     <string name="next">Next</string>
+    <string name="hello_user_welcome_to_fitnessstudio">Hello user !! Welcome to FitnessStudio Portal !! </string>
+    <string name="finish">Finish</string>
 </resources>
