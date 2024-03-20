@@ -49,15 +49,15 @@ public class PedometerResult extends Fragment {
 		DatabaseReference usersReference = database.getReference("Users").child(sessionManager.getUserId());
 
 		addToReportButton.setOnClickListener(v -> {
-			String dateFormat = Calendar.getInstance().get(Calendar.DATE) + "-" + Calendar.getInstance().get(Calendar.MONTH) + 1 + "-" + Calendar.getInstance().get(Calendar.YEAR);
-			DatabaseReference heartDataRef = usersReference.child("heartRateMap");
-			heartDataRef.addListenerForSingleValueEvent(new ValueEventListener() {
+			String dateFormat = Calendar.getInstance().get(Calendar.DATE) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.YEAR);
+			DatabaseReference pedometerRef = usersReference.child("pedometerMap");
+			pedometerRef.addListenerForSingleValueEvent(new ValueEventListener() {
 				@Override
 				public void onDataChange(@NonNull DataSnapshot snapshot) {
 					if (snapshot.exists()) {
-						heartDataRef.child(dateFormat).setValue(sessionManager.getPresentStepCount());
+						pedometerRef.child(dateFormat).setValue(sessionManager.getPresentStepCount());
 					} else {
-						heartDataRef.child(dateFormat).setValue(sessionManager.getPresentStepCount());
+						pedometerRef.child(dateFormat).setValue(sessionManager.getPresentStepCount());
 						Toast.makeText(getContext(), "child not found", Toast.LENGTH_SHORT).show();
 					}
 				}
