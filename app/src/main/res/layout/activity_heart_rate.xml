@@ -1,122 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_black"
     android:descendantFocusability="afterDescendants"
     android:focusable="auto"
-    android:id="@+id/linearLayout"
-    tools:context=".heart_rate.HeartRateActivity"
-    android:background="@color/light_black"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".heart_rate.HeartRateActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
-            android:layout_marginStart="20dp"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/heart_rate"
-            android:textAllCaps="true"
-            android:textColor="@color/blue"
-            android:textSize="25sp"
-            android:fontFamily="@font/inter_semibold"
-            android:layout_marginTop="20dp"
-            />
-        <TextView
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/heart_rate"
+                android:textAllCaps="true"
+                android:textColor="@color/blue"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/usage_place_your_index_finger_on_the_camera_nto_start_tracking_heart_rate"
+                android:textAlignment="center"
+                android:textColor="@color/green"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
+
+            <TextureView
+                android:id="@+id/textureView2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="20dp"
-            android:text="@string/usage_place_your_index_finger_on_the_camera_nto_start_tracking_heart_rate"
-            android:textAlignment="center"
-            android:textColor="@color/green"
-            android:textSize="18sp"
-            tools:ignore="TextContrastCheck" />
-        <TextureView
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:id="@+id/textureView2"
-            android:layout_width="150dp"
-            android:layout_height="150dp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/calculated_graph"
+                android:textAllCaps="true"
+                android:textColor="@color/blue"
+                android:textSize="25sp" />
+
+            <TextureView
+                android:id="@+id/graphTextureView"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/result"
+                android:textAllCaps="true"
+                android:textColor="@color/blue"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/heart_rate_calculation_start"
+                android:textColor="@color/green"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/start_tracking_button_heart_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/inter_semibold"
+                android:onClick="onClickNewMeasurement"
+                android:text="@string/start_tracking"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                tools:ignore="VisualLintButtonSize,TextContrastCheck" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/addToReportHeartRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/red"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Add to Report"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                tools:ignore="VisualLintButtonSize,TextContrastCheck" />
+
+        </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:layout_marginStart="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/calculated_graph"
-            android:textAllCaps="true"
-            android:textColor="@color/blue"
-            android:textSize="25sp"
-            android:fontFamily="@font/inter_semibold"
-            android:layout_marginTop="20dp"
-            />
-        <TextureView
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="20dp"
-            android:id="@+id/graphTextureView"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"/>
-        <TextView
-            android:layout_marginStart="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/result"
-            android:textAllCaps="true"
-            android:textColor="@color/blue"
-            android:textSize="25sp"
-            android:fontFamily="@font/inter_semibold"
-            android:layout_marginTop="20dp"
-            />
-        <TextView
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="20dp"
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/green"
-            android:text="@string/heart_rate_calculation_start"
-            android:textSize="18sp"
-            tools:ignore="TextContrastCheck" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="20dp">
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/start_tracking_button_heart_rate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="onClickNewMeasurement"
-            android:background="@drawable/button_background"
-            android:fontFamily="@font/inter_semibold"
-            android:text="@string/start_tracking"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/textColor"
-            android:textSize="20sp"
-            tools:ignore="VisualLintButtonSize,TextContrastCheck"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:visibility="invisible"
-            android:id="@+id/save_heart_rate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/button_background"
-            android:fontFamily="@font/inter_semibold"
-            android:text="@string/next"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/textColor"
-            android:textSize="20sp"
-            tools:ignore="VisualLintButtonSize,TextContrastCheck"/>
-    </LinearLayout>
-</LinearLayout>
+</ScrollView>

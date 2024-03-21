@@ -64,7 +64,7 @@ public class MyServicePedometer extends Service implements SensorEventListener {
 		}
 
 
-		return START_REDELIVER_INTENT;
+		return START_STICKY;
 	}
 
 	@Nullable
