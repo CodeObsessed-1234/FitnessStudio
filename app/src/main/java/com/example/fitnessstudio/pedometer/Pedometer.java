@@ -11,11 +11,14 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.session.SessionManager;
@@ -25,11 +28,19 @@ public class Pedometer extends AppCompatActivity {
 	private int targetStepsUser = 0;
 	private SessionManager sessionManager;
 
+	private SensorManager sensorManager;
 
 	@RequiresApi(api = Build.VERSION_CODES.Q)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+		Sensor stepCounterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+		if(stepCounterSensor==null) {
+			Toast.makeText(this, "Step Sensor is not Present in device", Toast.LENGTH_SHORT).show();
+			finish();
+		}
+
 		sessionManager = new SessionManager(this);
 		sessionManager.addStepReset(false);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);

@@ -51,9 +51,7 @@ public class MyServicePedometer extends Service implements SensorEventListener {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 			int importance = NotificationManager.IMPORTANCE_HIGH;
 			NotificationChannel channel = null;
-			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-				channel = new NotificationChannel(channelId, "name", importance);
-			}
+			channel = new NotificationChannel(channelId, "name", importance);
 			channel.setDescription("description");
 			builder.setOngoing(true);
 
