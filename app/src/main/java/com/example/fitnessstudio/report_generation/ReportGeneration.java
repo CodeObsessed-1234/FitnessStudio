@@ -12,6 +12,6 @@ public class ReportGeneration extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://localhost:3000/analysis/"+ SessionManager.getUserId())));
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://fitness-studio-v0.netlify.app/analysis/"+ SessionManager.getUserId())));
     }
 }
