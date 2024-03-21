@@ -3,7 +3,7 @@ package com.example.fitnessstudio.heart_rate;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
+
 import android.content.pm.PackageManager;
 import android.graphics.SurfaceTexture;
 import android.os.Bundle;
@@ -22,8 +22,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 
 import com.example.fitnessstudio.R;
-import com.example.fitnessstudio.blood_pressure.BloodPressureActivity;
-import com.example.fitnessstudio.report_generation.ReportGeneration;
+
 import com.example.fitnessstudio.session.SessionManager;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -32,10 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 
 public class HeartRateActivity extends Activity implements ActivityCompat.OnRequestPermissionsResultCallback {
 	private OutputAnalyzer analyzer;

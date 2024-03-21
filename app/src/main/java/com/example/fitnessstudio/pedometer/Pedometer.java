@@ -58,7 +58,7 @@ public class Pedometer extends AppCompatActivity {
 			}
 
 			sessionManager.addStepReset(false);
-			if (!targetStepsField.getText().toString().equals("")) {
+			if (!targetStepsField.getText().toString().isEmpty()) {
 				targetStepsUser = Integer.parseInt(targetStepsField.getText().toString());
 			}
 
