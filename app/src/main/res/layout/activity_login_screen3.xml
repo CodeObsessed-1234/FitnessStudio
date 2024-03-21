@@ -8,8 +8,9 @@
     android:background="@color/light_black"
     android:orientation="vertical">
     <LinearLayout
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:gravity="center"
         android:orientation="vertical"
         tools:ignore="UseCompoundDrawables">
@@ -18,21 +19,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/fitness_studio_icon"
-            android:contentDescription="@string/SplashScreeImage_description"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/profile_photo"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:fontFamily="@font/inter_semibold"
-            android:textColor="@color/blue"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/account_circle"
             android:contentDescription="@string/SplashScreeImage_description"
             />
     </LinearLayout>

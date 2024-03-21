@@ -33,10 +33,9 @@ public class LoginScreen1 extends AppCompatActivity {
 		continueButton.setOnClickListener(event -> {
 			String phoneNumberText = phoneNumber.getText().toString();
 			String code = countryCodePicker.getSelectedCountryCode();
-			if (TextUtils.isEmpty(phoneNumberText) || phoneNumberText.length() < 10)
+			if (TextUtils.isEmpty(phoneNumberText))
 				Toast.makeText(this, "Enter a valid phone number", Toast.LENGTH_SHORT).show();
 			else {
-
 				Intent intent = new Intent(this, LoginScreen2.class);
 				intent.putExtra("mobileNumber", (code + " " + phoneNumberText));
 				startActivity(intent);

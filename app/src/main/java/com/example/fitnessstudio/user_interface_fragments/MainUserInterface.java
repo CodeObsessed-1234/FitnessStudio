@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -20,6 +21,8 @@ public class MainUserInterface extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_main_user_interface, container, false);
+        TextView mainUserInterfaceHeading=view.findViewById(R.id.main_user_interface_heading);
+        mainUserInterfaceHeading.setSelected(true);
         LinearLayout bloodPressure=view.findViewById(R.id.blood_pressure);
         bloodPressure.setOnClickListener(event->{
             ReportGeneration.isReport=false;
