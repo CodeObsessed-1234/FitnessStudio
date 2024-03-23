@@ -13,9 +13,7 @@ import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.session.SessionManager;
 import com.example.fitnessstudio.user_data.UserData;
 import com.example.fitnessstudio.user_interface.UserInterface;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -38,7 +36,7 @@ public class LoginScreen3 extends AppCompatActivity {
 			SessionManager.addLoginSession(true);
 			String enteredName = name.getText().toString();
 			String emailEntered = email.getText().toString();
-			if (TextUtils.isEmpty(enteredName) || TextUtils.isEmpty(emailEntered) || emailEntered.indexOf('@')<0)
+			if (TextUtils.isEmpty(enteredName) || TextUtils.isEmpty(emailEntered) || emailEntered.indexOf('@') < 0)
 				Toast.makeText(this, "Enter valid details.", Toast.LENGTH_SHORT).show();
 			else {
 				addDataInDatabase(uid, enteredName, phoneNumber, emailEntered);
@@ -54,24 +52,11 @@ public class LoginScreen3 extends AppCompatActivity {
 		SessionManager sessionManager = new SessionManager(this);
 		FirebaseDatabase database = FirebaseDatabase.getInstance();
 		DatabaseReference usersReference = database.getReference("Users").child(uid);
-		usersReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-			@Override
-			public void onComplete(Task<DataSnapshot> task) {
-				if (!task.isSuccessful()) {
-					Map<String, Object> heartRateMap = new HashMap<>();
-					Map<String, Object> bloodPressureMap = new HashMap<>();
-					Map<String, Object> pedometerMap = new HashMap<>();
-					UserData userData = new UserData(Calendar.getInstance().get(Calendar.MONTH) + 1 + "-" + Calendar.getInstance().get(Calendar.YEAR), name, email, phoneNumber, heartRateMap, bloodPressureMap, pedometerMap);
-					sessionManager.addUserId(uid);
-					usersReference.setValue(userData);
-				} else {
-					Toast.makeText(LoginScreen3.this, "Error getting data" + task.getException(), Toast.LENGTH_SHORT).show();
-					usersReference.child("UserName").setValue(name);
-					usersReference.child("Email").setValue(email);
-					sessionManager.addUserId(uid);
-				}
-			}
-		});
-
+		Map<String, Object> heartRateMap = new HashMap<>();
+		Map<String, Object> bloodPressureMap = new HashMap<>();
+		Map<String, Object> pedometerMap = new HashMap<>();
+		UserData userData = new UserData(Calendar.getInstance().get(Calendar.MONTH) + 1 + "-" + Calendar.getInstance().get(Calendar.YEAR), name, email, phoneNumber, heartRateMap, bloodPressureMap, pedometerMap);
+		usersReference.setValue(userData);
+		sessionManager.addUserId(uid);
 	}
 }
