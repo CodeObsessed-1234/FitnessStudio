@@ -82,4 +82,9 @@
     <string name="next">Next</string>
     <string name="hello_user_welcome_to_fitnessstudio">Hello user !! Welcome to FitnessStudio Portal !! </string>
     <string name="finish">Finish</string>
+    <string name="subsrcibe">Subsrcibe</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fitness_studio_subscription_plan">Fitness Studio Subscription Plan</string>
+    <string name="buy_subscription">Buy subscription</string>
 </resources>

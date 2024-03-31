@@ -1,6 +1,7 @@
 package com.example.fitnessstudio.user_interface_fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.AlarmClock;
 import android.view.LayoutInflater;
@@ -14,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.event.EventActivityScreen;
 import com.example.fitnessstudio.pedometer.Pedometer;
-import com.example.fitnessstudio.report_generation.ReportGeneration;
+import com.example.fitnessstudio.session.SessionManager;
 
 public class MainUserInterface extends Fragment {
     @Override
@@ -25,42 +26,40 @@ public class MainUserInterface extends Fragment {
         mainUserInterfaceHeading.setSelected(true);
         LinearLayout bloodPressure=view.findViewById(R.id.blood_pressure);
         bloodPressure.setOnClickListener(event->{
-            ReportGeneration.isReport=false;
             getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_user_interface,new BloodPressureScreen()).commit();
             requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         });
         LinearLayout heartRate=view.findViewById(R.id.heart_rate);
         heartRate.setOnClickListener(event->{
-            ReportGeneration.isReport=false;
             getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_user_interface,new HeartRateScreen()).commit();
             requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         });
         LinearLayout events=view.findViewById(R.id.event);
         events.setOnClickListener(event->{
-            ReportGeneration.isReport=false;
             Intent intent=new Intent(requireActivity(), EventActivityScreen.class);
             startActivity(intent);
             requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         });
         LinearLayout alarm=view.findViewById(R.id.alarm);
         alarm.setOnClickListener(event->{
-            ReportGeneration.isReport=false;
             Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM);
             startActivity(intent);
             requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         });
         LinearLayout pedometer=view.findViewById(R.id.pedometer);
         pedometer.setOnClickListener(event-> {
-            ReportGeneration.isReport=false;
             Intent intent = new Intent(requireActivity(),Pedometer.class);
             startActivity(intent);
             requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         });
         LinearLayout reportGeneration=view.findViewById(R.id.report);
         reportGeneration.setOnClickListener(event->{
-            ReportGeneration.isReport=true;
-            Intent intent = new Intent(requireActivity(), ReportGeneration.class);
+            Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://fitness-studio-v0.netlify.app/analysis/"+ SessionManager.getUserId()));
             startActivity(intent);
+        });
+        LinearLayout subscribeButton=view.findViewById(R.id.subscribe);
+        subscribeButton.setOnClickListener(event->{
+            getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_user_interface,new SubscriptionFragment()).commit();
             requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         });
         return view;
