@@ -108,12 +108,20 @@ public class LoginScreen2 extends AppCompatActivity {
 								if (Objects.equals(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid(), userId)) {
 									SessionManager sessionManager = new SessionManager(LoginScreen2.this);
 									sessionManager.addUserId(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid());
+									SessionManager.addLoginSession(true);
 									Intent intent1 = new Intent(LoginScreen2.this, UserInterface.class);
 									startActivity(intent1);
-									Toast.makeText(LoginScreen2.this, "Welcome Back", Toast.LENGTH_SHORT).show();
+									Toast.makeText(LoginScreen2.this, "Welcome", Toast.LENGTH_SHORT).show();
 									finish();
+									return;
 								}
 							}
+							Intent intentNext = new Intent(LoginScreen2.this, LoginScreen3.class);
+							intentNext.putExtra("mobileNumber", phoneNumber);
+							intentNext.putExtra("uid", Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid());
+							startActivity(intentNext);
+							overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+							finish();
 						}
 
 						@Override
@@ -122,12 +130,7 @@ public class LoginScreen2 extends AppCompatActivity {
 						}
 					});
 
-					Intent intentNext = new Intent(this, LoginScreen3.class);
-					intentNext.putExtra("mobileNumber", phoneNumber);
-					intentNext.putExtra("uid", Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid());
-					startActivity(intentNext);
-					overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-					finish();
+
 				} else
 					Toast.makeText(LoginScreen2.this, "Verification failed", Toast.LENGTH_SHORT).show();
 			});
