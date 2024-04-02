@@ -38,23 +38,7 @@ public class SubscriptionFragment extends Fragment {
         ListView listView=view.findViewById(R.id.recycler_view_subscription);
         ArrayList<String> arrayList=new ArrayList<>();
         ArrayAdapter<String> arrayAdapter=new ArrayAdapter<>(requireContext(),R.layout.subscription_item,arrayList);
-//        FirebaseDatabase.getInstance().getReference("Subscriptions").child("NsrQmPKqym5kmADi-Yu").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    arrayList.clear();
-//                    for(DataSnapshot dataSnapshot:snapshot.getChildren())
-//                        arrayList.add(Objects.requireNonNull(dataSnapshot.getValue()).toString());
-//                }
-//                arrayAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-        listView.setAdapter(arrayAdapter);
+
         requireActivity().getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
              public void handleOnBackPressed() {
@@ -64,10 +48,6 @@ public class SubscriptionFragment extends Fragment {
                 fragmentTransaction.replace(R.id.frame_layout_user_interface,new MainUserInterface());
                 fragmentTransaction.commit();
             }
-        });
-        buySubscription.setOnClickListener(event->{
-            Intent intent=new Intent(getActivity(), HeartRateActivity.class);
-            startActivity(intent);
         });
         return view;
     }
