@@ -19,6 +19,7 @@
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -76,6 +77,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <receiver android:name=".pedometer.PedometerReceiver" />
+
     </application>
 
 </manifest>

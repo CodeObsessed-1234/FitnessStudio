@@ -1,229 +1,277 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user_interface_fragments.MainUserInterface"
     android:background="@color/light_black"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".user_interface_fragments.MainUserInterface">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_marginTop="15dp"
-            android:id="@+id/main_user_interface_heading"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/main_user_interface_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/itim"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:padding="10dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="@string/hello_user_welcome_to_fitnessstudio"
+                android:textColor="@color/blue"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/subscribe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:importantForAccessibility="no"
+                android:src="@drawable/subscription_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/subsrcibe"
+                android:textColor="@color/green"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="marquee"
-            android:padding="10dp"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:fontFamily="@font/itim"
-            android:textColor="@color/blue"
-            android:textSize="25sp"
-            android:singleLine="true"
-            android:scrollHorizontally="true"
-            android:text="@string/hello_user_welcome_to_fitnessstudio"
-            android:layout_marginBottom="5dp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/subscribe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="20dp"
-        tools:ignore="UseCompoundDrawables">
-        <ImageView
-            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/track_vitals"
+                android:textColor="@color/blue"
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:id="@+id/blood_pressure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/blood_pressure"
+                    android:src="@drawable/blood_pressure_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/blood_pressure"
+                    android:textColor="@color/green"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/heart_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/heart_rate"
+                    android:src="@drawable/heart_rate_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/heart_rate"
+                    android:textColor="@color/green"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pedometer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/pedometer"
+                    android:src="@drawable/pedometer_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/pedometer"
+                    android:textColor="@color/green"
+                    android:textSize="25sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/subscription_icon"
-            android:importantForAccessibility="no"
-            />
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="@string/utility"
+                android:textColor="@color/blue"
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:id="@+id/alarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/alarm"
+                    android:src="@drawable/alarm_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/alarm"
+                    android:textColor="@color/green"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/event"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/event"
+                    android:src="@drawable/event_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/event"
+                    android:textColor="@color/green"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/report"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/report"
+                    android:src="@drawable/report_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/report"
+                    android:textColor="@color/green"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                tools:ignore="UseCompoundDrawables"
+                android:id="@+id/share"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/share"
+                    android:src="@drawable/share_image" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/share"
+                    android:textColor="@color/green"
+                    android:textSize="25sp" />
+            </LinearLayout>
+        </LinearLayout>
+
         <TextView
-            android:fontFamily="@font/inter_semibold"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/subsrcibe"
-            android:textSize="20sp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/quote"
+            android:textAlignment="center"
             android:textColor="@color/green"
-            android:layout_gravity="center"
-            />
+            android:textSize="25sp" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/track_vitals"
-            android:textSize="25sp"
-            android:textColor="@color/blue"
-            android:layout_marginStart="15dp"
-            android:fontFamily="@font/inter_semibold"
-            />
-        <LinearLayout
-            android:id="@+id/blood_pressure"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UseCompoundDrawables"
-            android:layout_margin="10dp">
-            <ImageView
-                android:layout_marginStart="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/blood_pressure_icon"
-                android:contentDescription="@string/blood_pressure" />
-            <TextView
-                android:layout_marginStart="5dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/blood_pressure"
-                android:fontFamily="@font/inter_semibold"
-                android:textSize="25sp"
-                android:textColor="@color/green"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/heart_rate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UseCompoundDrawables"
-            android:layout_margin="10dp">
-            <ImageView
-                android:layout_marginStart="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/heart_rate_icon"
-                android:contentDescription="@string/heart_rate" />
-            <TextView
-                android:layout_marginStart="5dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/heart_rate"
-                android:fontFamily="@font/inter_semibold"
-                android:textSize="25sp"
-                android:textColor="@color/green"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/pedometer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UseCompoundDrawables"
-            android:layout_margin="10dp">
-            <ImageView
-                android:layout_marginStart="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/pedometer_icon"
-                android:contentDescription="@string/pedometer" />
-            <TextView
-                android:layout_marginStart="5dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pedometer"
-                android:fontFamily="@font/inter_semibold"
-                android:textSize="25sp"
-                android:textColor="@color/green"
-                />
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/utility"
-            android:textSize="25sp"
-            android:textColor="@color/blue"
-            android:layout_marginStart="15dp"
-            android:fontFamily="@font/inter_semibold"
-            />
-        <LinearLayout
-            android:id="@+id/alarm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UseCompoundDrawables"
-            android:layout_margin="10dp">
-            <ImageView
-                android:layout_marginStart="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/alarm_icon"
-                android:contentDescription="@string/alarm" />
-            <TextView
-                android:layout_marginStart="5dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/alarm"
-                android:fontFamily="@font/inter_semibold"
-                android:textSize="25sp"
-                android:textColor="@color/green"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/event"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UseCompoundDrawables"
-            android:layout_margin="10dp">
-            <ImageView
-                android:layout_marginStart="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/event_icon"
-                android:contentDescription="@string/event" />
-            <TextView
-                android:layout_marginStart="5dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/event"
-                android:fontFamily="@font/inter_semibold"
-                android:textSize="25sp"
-                android:textColor="@color/green"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/report"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UseCompoundDrawables"
-            android:layout_margin="10dp">
-            <ImageView
-                android:layout_marginStart="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/report_icon"
-                android:contentDescription="@string/report" />
-            <TextView
-                android:layout_marginStart="5dp"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/report"
-                android:fontFamily="@font/inter_semibold"
-                android:textSize="25sp"
-                android:textColor="@color/green"
-                />
-        </LinearLayout>
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_semibold"
-        android:textSize="25sp"
-        android:textColor="@color/green"
-        android:textAlignment="center"
-        android:text="@string/quote"
-        />
-</LinearLayout>
+</ScrollView>
