@@ -3,7 +3,8 @@ package com.example.fitnessstudio.subscription;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -22,16 +23,16 @@ import com.example.fitnessstudio.session.SessionManager;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Objects;
 
 public class PaymentActivity extends AppCompatActivity {
-	EditText name, upi_id, note;
+	EditText name, note;
 	TextView amount;
-	private static String payerName, upiId, payerNote, payerAmount, status;
-	Uri uri;
+	private static String payerName, payerNote, payerAmount;
+	final int UPI_PAYMENT = 0;
 
-	public static final String GPAY_PACKAGE_NAME = "com.google.android.apps.nbu.paisa.user";
+
 	String subscriptionId, subscriptionDuration;
 
 	@SuppressLint("SetTextI18n")
@@ -46,7 +47,6 @@ public class PaymentActivity extends AppCompatActivity {
 			return insets;
 		});
 		name = findViewById(R.id.transactionUserName);
-		upi_id = findViewById(R.id.transactionUPIID);
 		note = findViewById(R.id.transactionNote);
 		amount = findViewById(R.id.transactionAmount);
 		AppCompatButton pay = findViewById(R.id.transactionPay);
@@ -61,12 +61,11 @@ public class PaymentActivity extends AppCompatActivity {
 
 		pay.setOnClickListener(event -> {
 			payerName = name.getText().toString();
-			upiId = upi_id.getText().toString();
 			payerNote = note.getText().toString();
 			payerAmount = amount.getText().toString();
-			if (!payerName.isEmpty() && !upiId.isEmpty() && !payerNote.isEmpty() && !payerAmount.isEmpty()) {
-				uri = getUpiPaymentUri(payerName, upiId, payerNote, payerAmount);
-				payWithGpay();
+
+			if (!payerName.isEmpty() && !payerNote.isEmpty() && !payerAmount.isEmpty()) {
+				payUsingUpi(payerAmount, "8470808950@apl", "8470808950@apl");
 			} else {
 				Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
 			}
@@ -75,54 +74,109 @@ public class PaymentActivity extends AppCompatActivity {
 		cancel.setOnClickListener(v -> finish());
 	}
 
-	private static Uri getUpiPaymentUri(String name, String upiId, String note, String amount) {
-		return new Uri.Builder()
-		 .scheme("upi")
-		 .authority("pay")
+
+	void payUsingUpi(String amount, String upiId, String name) {
+
+		Uri uri = Uri.parse("upi://pay").buildUpon()
 		 .appendQueryParameter("pa", upiId)
-		 .appendQueryParameter("pn", name)
-		 .appendQueryParameter("tn", note)
+		 .appendQueryParameter("pn", upiId)
+		 .appendQueryParameter("mc", "1234")
+		 .appendQueryParameter("tid", "123456")
+		 .appendQueryParameter("tr", "asgdfuyas3153")
 		 .appendQueryParameter("am", amount)
+		 .appendQueryParameter("mam", amount)
 		 .appendQueryParameter("cu", "INR")
 		 .build();
-	}
 
-	private void payWithGpay() {
-		if (isAppInstalled(this, PaymentActivity.GPAY_PACKAGE_NAME)) {
-			Intent intent = new Intent(Intent.ACTION_VIEW);
-			intent.setData(uri);
-			intent.setPackage(PaymentActivity.GPAY_PACKAGE_NAME);
-			startActivityForResult(intent, 0);
+
+		Intent upiPayIntent = new Intent(Intent.ACTION_VIEW);
+		upiPayIntent.setData(uri);
+
+		// will always show a dialog to user to choose an app
+		Intent chooser = Intent.createChooser(upiPayIntent, "Pay with");
+
+		// check if intent resolves
+		if (null != chooser.resolveActivity(getPackageManager())) {
+			startActivityForResult(chooser, UPI_PAYMENT);
 		} else {
-			Toast.makeText(this, "Google Pay is not Installed. Please try install GPAY and then try again", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "No UPI app found, please install one to continue", Toast.LENGTH_SHORT).show();
 		}
+
 	}
 
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (data != null) {
-			status = Objects.requireNonNull(data.getStringExtra("status")).toLowerCase();
-		}
-		if ((RESULT_OK == resultCode) && Objects.equals(status, "success")) {
-			Toast.makeText(this, "Transaction Successful", Toast.LENGTH_SHORT).show();
-			FirebaseDatabase database = FirebaseDatabase.getInstance();
-			DatabaseReference userReference = database.getReference("Users").child(SessionManager.getUserId());
-			String dateFormat = Calendar.getInstance().get(Calendar.DATE) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.YEAR);
-			DatabaseReference userSubscriptionReference = userReference.child("subscribed");
-			userSubscriptionReference.child(dateFormat).setValue(subscriptionId);
-			SessionManager sessionManager = new SessionManager(this);
-			sessionManager.subscriptionDuration(Integer.parseInt(subscriptionDuration));
-			finish();
-		}
 
+		if (requestCode == UPI_PAYMENT) {
+			if ((RESULT_OK == resultCode) || (resultCode == 11)) {
+				if (data != null) {
+					String trxt = data.getStringExtra("response");
+					ArrayList<String> dataList = new ArrayList<>();
+					dataList.add(trxt);
+					upiPaymentDataOperation(dataList);
+				} else {
+					ArrayList<String> dataList = new ArrayList<>();
+					dataList.add("nothing");
+					upiPaymentDataOperation(dataList);
+				}
+			} else {
+				ArrayList<String> dataList = new ArrayList<>();
+				dataList.add("nothing");
+				upiPaymentDataOperation(dataList);
+			}
+		}
 	}
 
-	public static boolean isAppInstalled(Context context, String packageName) {
-		try {
-			context.getPackageManager().getApplicationInfo(packageName, 0);
-			return true;
-		} catch (PackageManager.NameNotFoundException e) {
-			return false;
+	private void upiPaymentDataOperation(ArrayList<String> data) {
+		if (isConnectionAvailable(this)) {
+			String str = data.get(0);
+			String paymentCancel = "";
+			if (str == null) str = "discard";
+			String status = "";
+			String approvalRefNo = "";
+			String response[] = str.split("&");
+			for (int i = 0; i < response.length; i++) {
+				String equalStr[] = response[i].split("=");
+				if (equalStr.length >= 2) {
+					if (equalStr[0].toLowerCase().equals("Status".toLowerCase())) {
+						status = equalStr[1].toLowerCase();
+					} else if (equalStr[0].toLowerCase().equals("ApprovalRefNo".toLowerCase()) || equalStr[0].toLowerCase().equals("txnRef".toLowerCase())) {
+						approvalRefNo = equalStr[1];
+					}
+				} else {
+					paymentCancel = "Payment cancelled by user.";
+				}
+			}
+
+			if (status.equals("success")) {
+				Toast.makeText(this, "Transaction successful.", Toast.LENGTH_SHORT).show();
+				FirebaseDatabase database = FirebaseDatabase.getInstance();
+				DatabaseReference userReference = database.getReference("Users").child(SessionManager.getUserId());
+				String dateFormat = Calendar.getInstance().get(Calendar.DATE) + "-" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "-" + Calendar.getInstance().get(Calendar.YEAR);
+				DatabaseReference userSubscriptionReference = userReference.child("subscribed");
+				userSubscriptionReference.child(dateFormat).setValue(subscriptionId);
+				SessionManager sessionManager = new SessionManager(this);
+				sessionManager.subscriptionDuration(Integer.parseInt(subscriptionDuration));
+				finish();
+			} else if ("Payment cancelled by user.".equals(paymentCancel)) {
+				Toast.makeText(this, "Payment cancelled by user.", Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(this, "Transaction failed.Please try again", Toast.LENGTH_SHORT).show();
+			}
+		} else {
+			Toast.makeText(this, "Internet connection is not available. Please check and try again", Toast.LENGTH_SHORT).show();
 		}
+	}
+
+	public static boolean isConnectionAvailable(Context context) {
+		ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (connectivityManager != null) {
+			NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
+			return netInfo != null && netInfo.isConnected()
+			 && netInfo.isConnectedOrConnecting()
+			 && netInfo.isAvailable();
+		}
+		return false;
 	}
 }

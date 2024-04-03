@@ -35,10 +35,10 @@ public class UserInterface extends AppCompatActivity {
 	private NotificationCompat.Builder builder;
 	boolean isSubscribed;
 	String subscriptionId, subscriptionName, subscriptionDuration, subscriptionPrice;
-	ArrayList<String> subscriptionIdList = new ArrayList<>();
-	ArrayList<String> subscriptionNameList = new ArrayList<>();
-	ArrayList<String> subscriptionDurationList = new ArrayList<>();
-	ArrayList<String> subscriptionPriceList = new ArrayList<>();
+	ArrayList<String> subscriptionIdList;
+	ArrayList<String> subscriptionNameList;
+	ArrayList<String> subscriptionDurationList;
+	ArrayList<String> subscriptionPriceList;
 
 	public boolean isSubscribed() {
 		return isSubscribed;
@@ -79,7 +79,10 @@ public class UserInterface extends AppCompatActivity {
 					subscriptionReference.addValueEventListener(new ValueEventListener() {
 						@Override
 						public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+							subscriptionPriceList = new ArrayList<>();
+							subscriptionNameList = new ArrayList<>();
+							subscriptionDurationList = new ArrayList<>();
+							subscriptionIdList = new ArrayList<>();
 							for (DataSnapshot childSnapshot : snapshot.getChildren()) {
 								subscriptionId = childSnapshot.getKey();
 								assert subscriptionId != null;
