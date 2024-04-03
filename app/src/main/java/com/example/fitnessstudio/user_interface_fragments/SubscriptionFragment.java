@@ -49,7 +49,6 @@ public class SubscriptionFragment extends Fragment {
 			assert subscriptionDuration != null;
 			assert subscriptionPrice != null;
 
-			Toast.makeText(getContext(), subscriptionName.get(i), Toast.LENGTH_SHORT).show();
 
 			subscriptionModels.add(new SubscriptionModel(subscriptionId.get(i), subscriptionName.get(i), subscriptionDuration.get(i), subscriptionPrice.get(i)));
 		}

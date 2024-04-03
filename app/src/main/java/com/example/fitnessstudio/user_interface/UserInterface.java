@@ -121,7 +121,6 @@ public class UserInterface extends AppCompatActivity {
 				} else {
 					String buySubscriptionDate;
 					for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-						Toast.makeText(UserInterface.this, childSnapshot.getKey(), Toast.LENGTH_SHORT).show();
 						buySubscriptionDate = childSnapshot.getKey();
 						String[] data = Objects.requireNonNull(buySubscriptionDate).split("-");
 						Calendar subDate = Calendar.getInstance();
