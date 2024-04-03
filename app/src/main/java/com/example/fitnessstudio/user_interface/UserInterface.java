@@ -148,6 +148,7 @@ public class UserInterface extends AppCompatActivity {
 									notificationManager.notify(0, builder.build());
 								}
 								isSubscribed = false;
+								userSubscriptionReference.removeValue().addOnFailureListener(e -> Toast.makeText(UserInterface.this, "error removing subscription", Toast.LENGTH_SHORT).show());
 							}
 						}
 					}
