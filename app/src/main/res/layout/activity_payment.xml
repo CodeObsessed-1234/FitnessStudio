@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".subscription.PaymentActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:src="@drawable/bank_image" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="15dp">
+
+            <EditText
+                android:id="@+id/transactionUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="name"
+                android:hint="Name"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/transactionUPIID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="UPI_ID"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/transactionNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="transaction_note"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/transactionAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="amount"
+                android:padding="10dp"
+                android:textColor="@color/red"
+                android:textColorHint="@color/red"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="20dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:background="@drawable/button_background"
+                    android:text="PAY"
+                    android:id="@+id/transactionPay"
+                    android:layout_marginRight="25dp"
+                    android:paddingLeft="55dp"
+                    android:paddingRight="55dp"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/red"
+                    android:text="Cancel"
+                    android:id="@+id/transactionCancel"
+                    android:textSize="20sp"
+                    android:paddingLeft="55dp"
+                    android:paddingRight="55dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

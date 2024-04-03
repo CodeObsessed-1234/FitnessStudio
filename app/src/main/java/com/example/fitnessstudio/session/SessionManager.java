@@ -24,7 +24,13 @@ public class SessionManager {
 		editor.commit();
 	}
 
-
+	public void subscriptionDuration(int duration){
+		editor.putInt("subDuration",duration);
+		editor.commit();
+	}
+	public int getSubscriptionDuration(){
+		return sharedpreferences.getInt("subDuration",0);
+	}
 
 	public void addStepCount(int count) {
 		editor.putInt("stepsCount", count);

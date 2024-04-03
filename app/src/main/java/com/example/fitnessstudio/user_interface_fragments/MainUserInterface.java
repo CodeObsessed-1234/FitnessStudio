@@ -25,12 +25,14 @@ import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.event.EventActivityScreen;
 import com.example.fitnessstudio.pedometer.Pedometer;
 import com.example.fitnessstudio.session.SessionManager;
+import com.example.fitnessstudio.user_interface.UserInterface;
 
 import java.util.Base64;
 
 public class MainUserInterface extends Fragment {
 
 	private static final int REQUEST_CODE_PICK_FILE = 1001;
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,19 +42,28 @@ public class MainUserInterface extends Fragment {
 		mainUserInterfaceHeading.setSelected(true);
 		LinearLayout bloodPressure = view.findViewById(R.id.blood_pressure);
 		bloodPressure.setOnClickListener(event -> {
-			getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_user_interface, new BloodPressureScreen()).commit();
-			requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+			if (((UserInterface) requireActivity()).isSubscribed()) {
+				getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_user_interface, new BloodPressureScreen()).commit();
+				requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+			} else Toast.makeText(getContext(), "Not Subscribed!", Toast.LENGTH_SHORT).show();
 		});
 		LinearLayout heartRate = view.findViewById(R.id.heart_rate);
 		heartRate.setOnClickListener(event -> {
-			getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_user_interface, new HeartRateScreen()).commit();
-			requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+			if (((UserInterface) requireActivity()).isSubscribed()) {
+				getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_user_interface, new HeartRateScreen()).commit();
+				requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+			} else Toast.makeText(getContext(), "Not Subscribed!", Toast.LENGTH_SHORT).show();
+
 		});
 		LinearLayout events = view.findViewById(R.id.event);
 		events.setOnClickListener(event -> {
-			Intent intent = new Intent(requireActivity(), EventActivityScreen.class);
-			startActivity(intent);
-			requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+			if (((UserInterface) requireActivity()).isSubscribed()) {
+				Intent intent = new Intent(requireActivity(), EventActivityScreen.class);
+				startActivity(intent);
+				requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+			} else Toast.makeText(getContext(), "Not Subscribed!", Toast.LENGTH_SHORT).show();
+
 		});
 		LinearLayout alarm = view.findViewById(R.id.alarm);
 		alarm.setOnClickListener(event -> {
@@ -68,27 +79,38 @@ public class MainUserInterface extends Fragment {
 		});
 		LinearLayout reportGeneration = view.findViewById(R.id.report);
 		reportGeneration.setOnClickListener(event -> {
-			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-				String updatedUrlUid = Base64.getEncoder()
-				 .encodeToString(SessionManager.getUserId().getBytes());
-				Log.d("TAG", "onCreateView: " + updatedUrlUid);
-				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://fitness-studio-v01.netlify.app/analysis/" + updatedUrlUid));
-				startActivity(intent);
-			} else {
-				Toast.makeText(getContext(), "Version Error", Toast.LENGTH_SHORT).show();
+
+			if (((UserInterface) requireActivity()).isSubscribed()) {
+				if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+					String updatedUrlUid = Base64.getEncoder()
+					 .encodeToString(SessionManager.getUserId().getBytes());
+					Log.d("TAG", "onCreateView: " + updatedUrlUid);
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://fitness-studio-v01.netlify.app/analysis/" + updatedUrlUid));
+					startActivity(intent);
+				} else {
+					Toast.makeText(getContext(), "Version Error", Toast.LENGTH_SHORT).show();
+				}
 			}
+			else Toast.makeText(getContext(), "Not Subscribed!", Toast.LENGTH_SHORT).show();
 		});
 		LinearLayout share = view.findViewById(R.id.share);
 		share.setOnClickListener(event -> {
-			if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-				ActivityCompat.requestPermissions(requireActivity(), new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
+			if (((UserInterface) requireActivity()).isSubscribed()) {
+				if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+					ActivityCompat.requestPermissions(requireActivity(), new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
+				}
+				startFilePicker();
 			}
-			startFilePicker();
+			else Toast.makeText(getContext(), "Not Subscribed!", Toast.LENGTH_SHORT).show();
 		});
 		LinearLayout subscribeButton = view.findViewById(R.id.subscribe);
 		subscribeButton.setOnClickListener(event -> {
-			getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_user_interface, new SubscriptionFragment()).commit();
-			requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+			if (((UserInterface) requireActivity()).isSubscribed()) {
+				Toast.makeText(getContext(), "Already Subscribed!", Toast.LENGTH_SHORT).show();
+			} else {
+				getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_user_interface, new SubscriptionFragment()).commit();
+				requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+			}
 		});
 		return view;
 	}
