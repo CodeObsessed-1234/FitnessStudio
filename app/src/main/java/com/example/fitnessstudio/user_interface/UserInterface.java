@@ -35,7 +35,7 @@ public class UserInterface extends AppCompatActivity {
 	private NotificationCompat.Builder builder;
 	boolean isSubscribed;
 	String subscriptionId, subscriptionName, subscriptionDuration, subscriptionPrice;
-	ArrayList<String> subscriptionIdList;
+	ArrayList<String> subscriptionIdList = new ArrayList<>();
 	ArrayList<String> subscriptionNameList;
 	ArrayList<String> subscriptionDurationList;
 	ArrayList<String> subscriptionPriceList;
