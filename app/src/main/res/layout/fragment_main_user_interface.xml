@@ -245,14 +245,12 @@
                 tools:ignore="UseCompoundDrawables"
                 android:id="@+id/share"
                 android:orientation="horizontal">
-
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:contentDescription="@string/share"
                     android:src="@drawable/share_image" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

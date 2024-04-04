@@ -100,21 +100,39 @@ public class LoginScreen2 extends AppCompatActivity {
 				if (task.isSuccessful()) {
 					FirebaseDatabase database = FirebaseDatabase.getInstance();
 					DatabaseReference usersReference = database.getReference("Users");
+					DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("RemovedUsers");
+					databaseReference.addValueEventListener(new ValueEventListener() {
+						@Override
+						public void onDataChange(@NonNull DataSnapshot snapshot) {
+							for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+								String userIds= dataSnapshot.getKey();
+								if(Objects.equals(userIds, Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid())){
+									Toast.makeText(LoginScreen2.this, "You are removed by system administrator.", Toast.LENGTH_SHORT).show();
+									SessionManager.removeUser();
+								}
+							}
+						}
+						//9889898989
+						@Override
+						public void onCancelled(@NonNull DatabaseError error) {
+
+						}
+					});
 					usersReference.addValueEventListener(new ValueEventListener() {
 						@Override
 						public void onDataChange(@NonNull DataSnapshot snapshot) {
 							for (DataSnapshot childSnapshot : snapshot.getChildren()) {
 								String userId = childSnapshot.getKey();
-								if (Objects.equals(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid(), userId)) {
-									SessionManager sessionManager = new SessionManager(LoginScreen2.this);
-									sessionManager.addUserId(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid());
-									SessionManager.addLoginSession(true);
-									Intent intent1 = new Intent(LoginScreen2.this, UserInterface.class);
-									startActivity(intent1);
-									Toast.makeText(LoginScreen2.this, "Welcome", Toast.LENGTH_SHORT).show();
-									finish();
-									return;
-								}
+									if (Objects.equals(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid(), userId)) {
+										SessionManager sessionManager = new SessionManager(LoginScreen2.this);
+										sessionManager.addUserId(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid());
+										SessionManager.addLoginSession(true);
+										Intent intent1 = new Intent(LoginScreen2.this, UserInterface.class);
+										startActivity(intent1);
+										Toast.makeText(LoginScreen2.this, "Welcome", Toast.LENGTH_SHORT).show();
+										finish();
+										return;
+									}
 							}
 							Intent intentNext = new Intent(LoginScreen2.this, LoginScreen3.class);
 							intentNext.putExtra("mobileNumber", phoneNumber);
@@ -123,7 +141,6 @@ public class LoginScreen2 extends AppCompatActivity {
 							overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 							finish();
 						}
-
 						@Override
 						public void onCancelled(@NonNull DatabaseError error) {
 							Toast.makeText(LoginScreen2.this, error.getMessage(), Toast.LENGTH_SHORT).show();

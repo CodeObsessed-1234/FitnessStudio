@@ -67,6 +67,13 @@ public class SessionManager {
 		editor.putString("uid",Uid);
 		editor.commit();
 	}
+	public static void removeUser(){
+		editor.putBoolean("isRemove",true);
+		editor.commit();
+	}
+	public static boolean isRemove(){
+		return sharedpreferences.getBoolean("isRemove",false);
+	}
 	public static String getUserId(){
 		return sharedpreferences.getString("uid",null);
 	}
