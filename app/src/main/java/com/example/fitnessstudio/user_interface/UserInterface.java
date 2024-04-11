@@ -3,7 +3,10 @@ package com.example.fitnessstudio.user_interface;
 import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -19,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.session.SessionManager;
 import com.example.fitnessstudio.user_interface_fragments.MainUserInterface;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -190,5 +194,105 @@ public class UserInterface extends AppCompatActivity {
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.add(R.id.frame_layout_user_interface, fragment);
 		fragmentTransaction.commit();
+	}
+	private boolean isConnectedInternet(){
+		ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+		if(networkInfo==null)
+			return false;
+		return networkInfo.isConnected();
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		if(!isConnectedInternet()){
+			FragmentManager fragmentManager=getSupportFragmentManager();
+			FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+			fragmentTransaction.add(R.id.frame_layout_user_interface,new NotConnected());
+			fragmentTransaction.commit();
+		}
+		else{
+			FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+			DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("RemovedUsers");
+			databaseReference.addValueEventListener(new ValueEventListener() {
+				@Override
+				public void onDataChange(@NonNull DataSnapshot snapshot) {
+					for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+						String userIds= dataSnapshot.getKey();
+						if(Objects.equals(userIds, Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid())){
+							Toast.makeText(UserInterface.this, "You are removed by system administrator.", Toast.LENGTH_SHORT).show();
+							System.exit(0);
+						}
+					}
+				}
+				@Override
+				public void onCancelled(@NonNull DatabaseError error) {
+
+				}
+			});
+		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if(!isConnectedInternet()){
+			FragmentManager fragmentManager=getSupportFragmentManager();
+			FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+			fragmentTransaction.add(R.id.frame_layout_user_interface,new NotConnected());
+			fragmentTransaction.commit();
+		}
+		else{
+			FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+			DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("RemovedUsers");
+			databaseReference.addValueEventListener(new ValueEventListener() {
+				@Override
+				public void onDataChange(@NonNull DataSnapshot snapshot) {
+					for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+						String userIds= dataSnapshot.getKey();
+						if(Objects.equals(userIds, Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid())){
+							Toast.makeText(UserInterface.this, "You are removed by system administrator.", Toast.LENGTH_SHORT).show();
+							System.exit(0);
+						}
+					}
+				}
+				@Override
+				public void onCancelled(@NonNull DatabaseError error) {
+
+				}
+			});
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if(!isConnectedInternet()){
+			FragmentManager fragmentManager=getSupportFragmentManager();
+			FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+			fragmentTransaction.add(R.id.frame_layout_user_interface,new NotConnected());
+			fragmentTransaction.commit();
+		}
+		else{
+			FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+			DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference().child("RemovedUsers");
+			databaseReference.addValueEventListener(new ValueEventListener() {
+				@Override
+				public void onDataChange(@NonNull DataSnapshot snapshot) {
+					for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+						String userIds= dataSnapshot.getKey();
+						if(Objects.equals(userIds, Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid())){
+							Toast.makeText(UserInterface.this, "You are removed by system administrator.", Toast.LENGTH_SHORT).show();
+							System.exit(0);
+						}
+					}
+				}
+				@Override
+				public void onCancelled(@NonNull DatabaseError error) {
+
+				}
+			});
+		}
 	}
 }

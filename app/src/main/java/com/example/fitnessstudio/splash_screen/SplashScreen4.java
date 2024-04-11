@@ -3,18 +3,15 @@ package com.example.fitnessstudio.splash_screen;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
+
 import com.example.fitnessstudio.R;
 import com.example.fitnessstudio.login_screen.LoginScreen1;
-import com.example.fitnessstudio.session.SessionManager;
-import com.example.fitnessstudio.user_interface.UserInterface;
 
 
 @SuppressLint("CustomSplashScreen")

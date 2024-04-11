@@ -40,7 +40,7 @@
     <string name="alarm">Alarm</string>
     <string name="event">Event</string>
     <string name="report">Report</string>
-    <string name="share">Share Report</string>
+    <string name="share">Share report</string>
     <string name="quote">Nothing will work unless\nyou do</string>
     <string name="usage_place_your_index_finger_on_the_camera_nto_start_tracking_heart_rate">Usage- place your index finger on the camera to start tracking heart rate.</string>
     <string name="start_tracking">Start tracking</string>
@@ -84,8 +84,6 @@
     <string name="hello_user_welcome_to_fitnessstudio">Hello user !! Welcome to FitnessStudio Portal !! </string>
     <string name="finish">Finish</string>
     <string name="subsrcibe">Subsrcibe</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fitness_studio_subscription_plan">Fitness Studio Subscription Plan</string>
     <string name="buy_subscription">Buy subscription</string>
     <!-- Strings used for fragments for navigation -->
@@ -133,4 +131,14 @@
     <string name="subscriptionPrice">Price</string>
     <string name="subscriptionDuration">duration</string>
     <string name="subscriptionName">Subscription_Name</string>
+    <string name="cancel">Cancel</string>
+    <string name="pay">Pay</string>
+    <string name="name">Name</string>
+    <string name="transaction_note">transaction_note</string>
+    <string name="amount">Amount</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fitness_studio">Fitness Studio</string>
+    <string name="no_internet_access_kindly_retry">No internet access.Kindly retry.</string>
+    <string name="no_internet_access_nkindly_retry">No internet access.\nKindly retry.</string>
 </resources>

@@ -80,6 +80,7 @@ public class LoginScreen2 extends AppCompatActivity {
 				}
 			});
 		}
+		editTexts[editTexts.length-1].setCursorVisible(false);
 		Intent intent = getIntent();
 		String phoneNumberText = intent.getStringExtra("mobileNumber");
 		assert phoneNumberText != null;

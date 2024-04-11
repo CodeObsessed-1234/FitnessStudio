@@ -5,50 +5,60 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".subscription.PaymentActivity">
-
+    tools:context=".subscription.PaymentActivity"
+    android:background="@color/light_black">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:background="@color/light_black">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:src="@drawable/bank_image" />
-
+            android:src="@drawable/bank_image"
+            android:importantForAccessibility="no" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingTop="15dp">
 
             <EditText
                 android:id="@+id/transactionUserName"
                 android:layout_width="match_parent"
+                android:textColorHint="@color/green"
                 android:layout_height="wrap_content"
                 android:autofillHints="name"
-                android:hint="Name"
-                android:inputType="text" />
+                android:hint="@string/name"
+                android:textColor="@color/green"
+                android:inputType="text"
+                android:minHeight="48dp"
+                tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
 
             <EditText
                 android:id="@+id/transactionNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="transaction_note"
-                android:inputType="text" />
+                android:hint="@string/transaction_note"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textColorHint="@color/green"
+                android:textColor="@color/green"
+                android:minHeight="48dp"
+                tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
 
             <TextView
                 android:id="@+id/transactionAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:hint="amount"
+                android:hint="@string/amount"
                 android:padding="10dp"
-                android:textColor="@color/red"
-                android:textColorHint="@color/red"
-                android:textSize="20sp" />
+                android:textColor="@color/green"
+                android:textColorHint="@color/green"
+                android:textSize="20sp"
+                tools:ignore="TextContrastCheck" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,24 +71,29 @@
                     android:id="@+id/transactionPay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="25dp"
+                    android:layout_marginEnd="25dp"
                     android:background="@drawable/button_background"
                     android:paddingLeft="40dp"
                     android:paddingRight="40dp"
-                    android:text="PAY"
+                    android:text="@string/pay"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textAllCaps="false"
+                    tools:ignore="TextContrastCheck" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/transactionCancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/red"
+                    android:background="@drawable/button_background"
+                    android:backgroundTint="@color/red"
                     android:paddingLeft="40dp"
                     android:paddingRight="40dp"
-                    android:text="Cancel"
+                    android:text="@string/cancel"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textAllCaps="false"
+                    android:textSize="15sp"
+                    tools:ignore="TextContrastCheck" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

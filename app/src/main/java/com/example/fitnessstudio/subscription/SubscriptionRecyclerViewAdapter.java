@@ -40,7 +40,7 @@ public class SubscriptionRecyclerViewAdapter extends RecyclerView.Adapter<Subscr
 	public void onBindViewHolder(@NonNull SubscriptionRecyclerViewAdapter.MyViewHolder holder, int position) {
 		holder.subscriptionName.setText(subscriptionModels.get(position).getSubscriptionName());
 		holder.subscriptionDuration.setText(subscriptionModels.get(position).getSubscriptionDuration() + "Yrs");
-		holder.subscriptionPrice.setText(subscriptionModels.get(position).getSubscriptionPrice() + "$");
+		holder.subscriptionPrice.setText(subscriptionModels.get(position).getSubscriptionPrice() + "₹");
 		holder.subscriptionBuyButton.setOnClickListener(event -> {
 			Intent intent = new Intent(context, PaymentActivity.class);
 			intent.putExtra("amount", subscriptionModels.get(position).getSubscriptionPrice());

@@ -55,7 +55,7 @@ public class PaymentActivity extends AppCompatActivity {
 		name.requestFocus();
 
 		Intent intent = getIntent();
-		amount.setText(intent.getStringExtra("amount") + "$");
+		amount.setText(intent.getStringExtra("amount") + "₹");
 		subscriptionId = intent.getStringExtra("subId");
 		subscriptionDuration = intent.getStringExtra("subDuration");
 

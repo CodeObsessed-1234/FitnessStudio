@@ -25,8 +25,11 @@ public class LoginScreen3 extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if(SessionManager.isRemove())
+		if(SessionManager.isRemove()){
 			System.exit(0);
+			this.finish();
+			return;
+		}
 		setContentView(R.layout.activity_login_screen3);
 		Intent intent = getIntent();
 		String phoneNumber = intent.getStringExtra("mobileNumber");

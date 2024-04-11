@@ -85,6 +85,7 @@
             android:hint="@string/enter_number"
             android:inputType="phone"
             android:textSize="20sp"
+            android:maxLength="12"
             android:textColor="@color/green"
             android:backgroundTint="@color/blue"
             android:textColorHint="@color/green"
