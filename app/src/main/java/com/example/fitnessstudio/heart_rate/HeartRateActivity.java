@@ -54,12 +54,8 @@ public class HeartRateActivity extends Activity implements ActivityCompat.OnRequ
 			super.handleMessage(msg);
 			if (msg.what == MESSAGE_UPDATE_REALTIME) {
 				String string = msg.obj.toString();
-				string = string.substring(string.indexOf(":") + 2, string.lastIndexOf(' '));
+				string=string.substring(string.indexOf(":") + 2, string.lastIndexOf(' '));
 				answerStored = Double.parseDouble(string);
-				new Thread(()->{
-					if(answerStored<60)
-						Toast.makeText(HeartRateActivity.this, "Please put your finger.", Toast.LENGTH_SHORT).show();
-				}).start();
 				((TextView) findViewById(R.id.textView)).setText(msg.obj.toString());
 			}
 			if (msg.what == MESSAGE_UPDATE_FINAL) {
