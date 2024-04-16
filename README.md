@@ -26,3 +26,5 @@ Technology used:
 ![image](https://github.com/CodeObsessed-1234/FitnessStudio/assets/86585422/9052088c-4a61-4120-8756-8999fd0b07ef)
 ![image](https://github.com/CodeObsessed-1234/FitnessStudio/assets/86585422/5243df6b-606e-4442-8c18-e984e85fead3)
 ![image](https://github.com/CodeObsessed-1234/FitnessStudio/assets/86585422/96256957-af16-4b68-bbd9-6a127603256c)
+
+Apk available in release of this repository
