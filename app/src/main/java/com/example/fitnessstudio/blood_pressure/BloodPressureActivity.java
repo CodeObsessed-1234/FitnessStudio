@@ -58,9 +58,20 @@ public class BloodPressureActivity extends Activity implements ActivityCompat.On
 			if (msg.what == MESSAGE_UPDATE_REALTIME2) {
 				String string = msg.obj.toString();
 				string = string.substring(string.indexOf(":") + 2, string.lastIndexOf(' '));
-				double answer = Double.parseDouble(string) * 2.0;
+				double answer = Double.parseDouble(string);
+				double ROB = 18.5;
+				double ET = (364.5 - 1.23 * answer);
+				double Q = 4.5;
+				Q=5.0;
+				//W						//H
+				double BSA = 0.007184 * (Math.pow(80, 0.425)) * (Math.pow(180, 0.725));
+				double SV = (-6.6 + (0.25 * (ET - 35)) - (0.62 * answer) + (40.4 * BSA) - (0.51 * 21));
+				double PP = SV / ((0.013 * 80 - 0.007 * 21 - 0.004 * answer) + 1.307);
+				double MPP = Q * ROB;
+				int SP = (int) (MPP + 3 / 2 * PP);
+				int DP = (int) (MPP - PP / 3);
 				answerStored = answer;
-				string = "Blood pressure calculated: " + answer + " mmHg";
+				string = "Blood pressure calculated: " + DP +"/"+ SP+ " mmHg";
 				((TextView) findViewById(R.id.bloodPressureAnswer)).setText(string);
 			}
 			if (msg.what == MESSAGE_UPDATE_FINAL2) {
